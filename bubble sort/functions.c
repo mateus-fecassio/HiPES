@@ -5,9 +5,10 @@
 #include <sys/time.h>
 #include <time.h>
 #include <limits.h>
+#include "lfsr.h"
 #include "functions.h"
 
-#define RAND_MAX INT_MAX;
+
 
 double timestamp(void)
 {
@@ -24,26 +25,20 @@ vector_t* allocate_vector(size_t size)
 }; //FINALIZADO
 
 
-void init_vector(vector_t *V1, vector_t *V2, size_t size)
+void init_vector(vector_t *V, size_t size)
 {
     size_t i;
+    int random_value;
     vector_t x;
 
-    srand(time(NULL));
-
+    init_lfsrs();
     for (i = 0; i < size; ++i)
     {
-        x = ((vector_t) rand() * 1000) / ( vector_t ) RAND_MAX;
-        V1[i] = x;
-        V2[i] = x;
-
-        printf("n = %.5g\n", x);
-        //printf("n = %d\n", x);
+        random_value = get_random(); // a value between 0 and 65535 (0xffff) is returned
+        V[i] = random_value;
     }
-}
+}; //FINALIZADO
 
- 
-  
 
 void bubbleSort(vector_t *V, size_t size)
 {  

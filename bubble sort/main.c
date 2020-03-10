@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include "functions.h"
+#include "lfsr.h"
 
 
 static void usage(char *progname)
@@ -18,14 +19,14 @@ int main(int argc, char *argv[])
 {
     int opt;
     char *size;
-    vector_t *V1, *V2;
+    vector_t *base_vec, *V;
     size_t vector_size;
 
 
 
 
 /* ====================== TRATAMENTO DE LINHA DE COMANDO ====================== */
-  if ( argc < 3 )
+  if (argc < 3)
     usage(argv[0]);
   
   while ( (opt = getopt (argc, argv, "d:")) != -1 )
@@ -52,24 +53,21 @@ int main(int argc, char *argv[])
   vector_size = atoi(size);
 
 //ALOCAGEM DO VETOR;
-    V1 = allocate_vector(vector_size);
-    V2 = allocate_vector(vector_size);
-    if (!V1 || !V2)
+    base_vec = allocate_vector(vector_size);
+    if (!base_vec)
     {
         fprintf(stderr, "Erro ao alocar o vetor a ser ordenado!\n");
         exit(-1);
     }
 
-
-
 //INICIALIZAÇÃO DO VETOR COM OS VALORES (ALEATÓRIOS)
-    init_vector(V1, V2, vector_size);
+    init_vector(base_vec, vector_size);
 
 
 
 //medir tempo aqui
 //ORDENAÇÃO
-    bubbleSort(V1, vector_size);
+    bubbleSort(base_vec, vector_size);
 
 //terminar medição de tempo aqui
 
@@ -86,5 +84,5 @@ int main(int argc, char *argv[])
 
 
 
-
+    return 0;
 }
