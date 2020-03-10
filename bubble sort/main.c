@@ -17,23 +17,27 @@ static void usage(char *progname)
 
 int main(int argc, char *argv[])
 {
-    int opt;
+    int opt, repet;
     char *size;
     vector_t *base_vec, *V;
-    size_t vector_size;
+    vector_s vector_size;
 
 
 
 
 /* ====================== TRATAMENTO DE LINHA DE COMANDO ====================== */
-  if (argc < 3)
+  if (argc < 5)
     usage(argv[0]);
   
-  while ( (opt = getopt (argc, argv, "d:")) != -1 )
+  while ( (opt = getopt (argc, argv, "d:r:")) != -1 )
   {
     switch (opt)
     {
       case 'd':
+        size = optarg;
+        break;
+
+        case 'r':
         size = optarg;
         break;
 

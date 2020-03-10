@@ -18,16 +18,16 @@ double timestamp(void)
 }; //FINALIZADO
 
 
-vector_t* allocate_vector(size_t size)
+vector_t* allocate_vector(vector_s size)
 {
     vector_t *V = (vector_t *) malloc (size * sizeof(vector_t));
     return V;
 }; //FINALIZADO
 
 
-void init_vector(vector_t *V, size_t size)
+void init_vector(vector_t *V, vector_s size)
 {
-    size_t i;
+    vector_s i;
     int random_value;
     vector_t x;
 
@@ -40,9 +40,9 @@ void init_vector(vector_t *V, size_t size)
 }; //FINALIZADO
 
 
-void bubbleSort(vector_t *V, size_t size)
+void bubbleSort(vector_t *V, vector_s size)
 {  
-    size_t i, j;
+    vector_s i, j;
     vector_t temp;
 
     for (i = 0; i < size-1; ++i)
