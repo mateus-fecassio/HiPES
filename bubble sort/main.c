@@ -17,10 +17,11 @@ static void usage(char *progname)
 
 int main(int argc, char *argv[])
 {
-    int opt, repet;
-    char *size;
-    vector_t *base_vec, *V;
-    vector_s vector_size;
+  int opt, repeat, i;
+  char *str1, *str2;
+  double t1, t2;
+  vector_t *base_vec, *V;
+  vector_s vector_size;
 
 
 
@@ -34,11 +35,11 @@ int main(int argc, char *argv[])
     switch (opt)
     {
       case 'd':
-        size = optarg;
+        str1 = optarg;
         break;
 
         case 'r':
-        size = optarg;
+        str2 = optarg;
         break;
 
       case ':':
@@ -54,27 +55,34 @@ int main(int argc, char *argv[])
     }
   }
 /* ====================== FIM DO TRATAMENTO DE LINHA DE COMANDO ====================== */
-  vector_size = atoi(size);
+  vector_size = atoi(str1);
+  repeat = atoi(str2);
 
 //ALOCAGEM DO VETOR;
-    base_vec = allocate_vector(vector_size);
-    if (!base_vec)
-    {
-        fprintf(stderr, "Erro ao alocar o vetor a ser ordenado!\n");
-        exit(-1);
-    }
+  base_vec = allocate_vector(vector_size);
+  if (!base_vec)
+  {
+    fprintf(stderr, "Erro ao alocar o vetor a ser ordenado!\n");
+    exit(-1);
+  }
 
 //INICIALIZAÇÃO DO VETOR COM OS VALORES (ALEATÓRIOS)
-    init_vector(base_vec, vector_size);
+  init_vector(base_vec, vector_size);
+
+for (i = 0; i < repeat; ++i)
+{
+  //cópia do vetor base
+  memcpy(V, base_vec, (vector_size * sizeof(vector_t)));
 
 
+  t1 = timestamp();
+  //ORDENAÇÃO
+  bubbleSort(V, vector_size);
+  t2 = timestamp();
+  fprintf(stdout, "rep %d = %.5g", i, t2-t1);
+}
 
-//medir tempo aqui
-//ORDENAÇÃO
-    bubbleSort(base_vec, vector_size);
-
-//terminar medição de tempo aqui
-
+//FAZER A IMPRESSÃO DO VETOR PARA SABER SE ESTÁ CERTO O ALGORITMO
 
 
 
