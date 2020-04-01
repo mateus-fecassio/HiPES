@@ -1,7 +1,7 @@
 CC      	  = gcc -std=c11 -g
 LFLAGS        =
-AVX_FLAGS 	  = -march=native -mavx512f
-AVX_LOG_FLAGS = -fopt-info-vec -fopt-info-vec-missed
+#AVX_FLAGS 	  = -march=native -mavx512f
+#AVX_LOG_FLAGS = -fopt-info-vec -fopt-info-vec-missed
 CFLAGS  = -pipe \
 	-ggdb3 -Wstrict-overflow=5 -fstack-protector-all \
     -W -Wall -Wextra \
@@ -37,6 +37,7 @@ CFLAGS  = -pipe \
 	-Wunsafe-loop-optimizations \
 	-Wvolatile-register-var \
 	-Wwrite-strings \
+	#IMPORTANT:
 	-march=native -mavx512f 
 
 #------------------------------------------------------------------------------
@@ -52,7 +53,7 @@ OBJS = functions.o \
 
 all: $(PROG)
 
-avx: CFLAGS += $(AVX_FLAGS) $(AVX_LOG_FLAGS)
+#avx: CFLAGS += $(AVX_FLAGS) $(AVX_LOG_FLAGS)
 
 $(PROG):  $(PROG).o
 
