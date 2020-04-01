@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
     }
   }
 /* ====================== FIM DO TRATAMENTO DE LINHA DE COMANDO ====================== */
+  
   vector_size = atoll(str1);
   iterations = atoll(str2);
 
@@ -124,7 +125,13 @@ for (i = 0; i < iterations; ++i)
 
 print_vector(V, vector_size);
 
-//desalocar a memória
 
-  return 0;
+
+//DESALOCAGEM DOS VETORES
+  free(base_vec1);
+  free(base_vec2);
+  free(V);
+
+
+  exit(EXIT_SUCCESS);
 }
