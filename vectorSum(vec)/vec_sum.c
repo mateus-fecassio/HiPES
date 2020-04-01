@@ -5,7 +5,6 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <immintrin.h>
-#include <x86intrin.h>
 #include "functions.h"
 #include "lfsr.h"
 
@@ -78,47 +77,47 @@ int main(int argc, char *argv[])
 
 
 //--------------------------------------------------------------
-fprintf(stdout, "Soma vetorial (SEM vetorização):\n");
-for (i = 0; i < iterations; ++i)
-{
-  //preencher o vetor com zeros
-  memset(V, 0, vector_size * sizeof(vector_t));
+  fprintf(stdout, "Soma vetorial (SEM vetorização):\n");
+  for (i = 0; i < iterations; ++i)
+  {
+    //preencher o vetor com zeros
+    memset(V, 0, vector_size * sizeof(vector_t));
 
-  start = timestamp();
-  
-  //SOMA VETORIAL, sem vetorização
-  vectorSum(base_vec1, base_vec2, V, vector_size);
+    start = timestamp();
+    
+    //SOMA VETORIAL, sem vetorização
+    vectorSum(base_vec1, base_vec2, V, vector_size);
 
-  end = timestamp();
+    end = timestamp();
 
-  elapsed = end - start;
+    elapsed = end - start;
 
 
-  fprintf(stdout, "repetition %llu = %.5g(ms)\n", i+1, elapsed);
+    fprintf(stdout, "repetition %llu = %.5g(ms)\n", i+1, elapsed);
 }
 //--------------------------------------------------------------
 
-fprintf(stdout, "\n\n\n");
+  fprintf(stdout, "\n\n\n");
 
 //--------------------------------------------------------------
-fprintf(stdout, "Soma vetorial (COM vetorização):\n");
-for (i = 0; i < iterations; ++i)
-{
-  //preencher o vetor com zeros
-  memset(V, 0, vector_size * sizeof(vector_t));
+  fprintf(stdout, "Soma vetorial (COM vetorização):\n");
+  for (i = 0; i < iterations; ++i)
+  {
+    //preencher o vetor com zeros
+    memset(V, 0, vector_size * sizeof(vector_t));
 
 
-  start = timestamp();
-  
-  //SOMA VETORIAL, com vetorização
-  vectorSum_vec(base_vec1, base_vec2, V, vector_size);
+    start = timestamp();
+    
+    //SOMA VETORIAL, com vetorização
+    vectorSum_vec(base_vec1, base_vec2, V, vector_size);
 
-  end = timestamp();
+    end = timestamp();
 
-  elapsed = end - start;
+    elapsed = end - start;
 
 
-  fprintf(stdout, "repetition %llu = %.5g(ms)\n", i+1, elapsed);
+    fprintf(stdout, "repetition %llu = %.5g(ms)\n", i+1, elapsed);
 }
 //--------------------------------------------------------------
 

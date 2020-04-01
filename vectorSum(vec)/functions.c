@@ -6,7 +6,6 @@
 #include <time.h>
 #include <limits.h>
 #include <immintrin.h>
-#include <x86intrin.h>
 #include "lfsr.h"
 #include "functions.h"
 
