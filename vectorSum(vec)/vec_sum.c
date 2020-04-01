@@ -25,8 +25,6 @@ int main(int argc, char *argv[])
   vector_s vector_size, i, iterations;
 
 
-
-
 /* ====================== TRATAMENTO DE LINHA DE COMANDO ====================== */
   if (argc < 5)
     usage(argv[0]);
