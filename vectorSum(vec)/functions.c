@@ -64,8 +64,8 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 
         for (i = 0; i < size; i += 16)
         {
-            va = _mm512_load_si512(&V1[i]);
-            vb = _mm512_load_si512(&V2[i]);
+            va = _mm512_loadu_si512(&V1[i]);
+            vb = _mm512_loadu_si512(&V2[i]);
             sum = _mm512_add_epi32(va, vb);
 
             _mm512_store_si512(&res[i], sum);
