@@ -69,7 +69,7 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
             vb = _mm512_load_epi32(&V2[i]);
             sum = _mm512_add_epi32(va, vb);
 
-            _mm512_store_epi32(&res[i], sum);
+            //_mm512_store_epi32(&res[i], sum);
         }
     }
 }; //ESTÁ DANDO ERRO!
