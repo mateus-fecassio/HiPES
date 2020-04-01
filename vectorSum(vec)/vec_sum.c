@@ -99,7 +99,6 @@ for (i = 0; i < iterations; ++i)
 //--------------------------------------------------------------
 
 fprintf(stdout, "\n\n\n");
-print_vector(V, vector_size);
 
 //--------------------------------------------------------------
 fprintf(stdout, "Soma vetorial (COM vetorização):\n");
@@ -122,9 +121,6 @@ for (i = 0; i < iterations; ++i)
   fprintf(stdout, "repetition %llu = %.5g(ms)\n", i+1, elapsed);
 }
 //--------------------------------------------------------------
-
-print_vector(V, vector_size);
-
 
 
 //DESALOCAGEM DOS VETORES

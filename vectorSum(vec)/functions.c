@@ -24,7 +24,7 @@ vector_t* allocate_vector(vector_s size)
 {
     vector_t *V = (vector_t *)aligned_alloc(ALIGNMENT, size * sizeof(vector_t));
     return V;
-}; //TESTAR, nova função aligned_alloc em vez de malloc
+}; //FINALIZADO
 
 
 void init_vector(vector_t *V, vector_s size)
@@ -36,7 +36,7 @@ void init_vector(vector_t *V, vector_s size)
     for (i = 0; i < size; ++i)
     {
         random_value = get_random(); // a value between 0 and 65535 (0xffff) is returned
-        V[i] = 1;
+        V[i] = random_value;
     }
 }; //FINALIZADO
 
@@ -50,30 +50,6 @@ void vectorSum(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
         res[i] = V1[i] + V2[i]; 
     }      
 }; //FINALIZADO
-
-/*
-void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
-{  
-    vector_s i;
-    __m512i va, vb, sum;
-
-
-    if (size > 16)
-    {
-        
-        sum = _mm512_set4_epi32(0,0,0,0);
-
-        for (i = 0; i < size; i += 16)
-        {
-            va = _mm512_load_epi32(&V1[i]);
-            vb = _mm512_load_epi32(&V2[i]);
-            sum = _mm512_add_epi32(va, vb);
-
-            _mm512_store_epi32(&res[i], sum);
-        }
-    }
-}; //ESTÁ DANDO ERRO!
-*/
 
 
 void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
@@ -97,10 +73,9 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
     }
     else
     {
-        vectorSum(V1, V2, red, size);
-    }
-    
-}; //ESTÁ DANDO ERRO!
+        vectorSum(V1, V2, res, size);
+    }  
+}; //FINALIZADO
 
 
 void print_vector(vector_t *V, vector_s size)
