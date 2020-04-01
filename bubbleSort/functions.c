@@ -20,7 +20,7 @@ double timestamp(void)
 
 vector_t* allocate_vector(vector_s size)
 {
-    vector_t *V = (vector_t *) malloc (size * sizeof(vector_t));
+    vector_t *V = (vector_t *)malloc(size * sizeof(vector_t));
     return V;
 }; //FINALIZADO
 
@@ -29,7 +29,6 @@ void init_vector(vector_t *V, vector_s size)
 {
     vector_s i;
     int random_value;
-    vector_t x;
 
     init_lfsrs();
     for (i = 0; i < size; ++i)
@@ -53,4 +52,32 @@ void bubbleSort(vector_t *V, vector_s size)
                 V[j] = V[j+1];
                 V[j+1] = temp;
             }
-}; //TESTAR
+}; //FINALIZADO
+
+
+void bubbleSort_pred(vector_t *V, vector_s size)
+{  
+    vector_s i, j;
+    vector_t temp;
+
+    for (i = 0; i < size-1; ++i)
+        for (j = 0; j < size-i-1; ++j)
+            if (V[j] > V[j+1])
+            {
+                temp = V[j];
+                V[j] = V[j+1];
+                V[j+1] = temp;
+            }
+}; //FAZER
+
+
+void print_vector(vector_t *V, vector_s size)
+{
+    vector_s i;
+
+    for (i = 0; i < size; ++i)
+    {
+        printf("%d, ", V[i]);
+    }
+    printf("\n");
+}; //FINALIZADO
