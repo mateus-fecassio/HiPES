@@ -51,7 +51,7 @@ void vectorSum(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
     }      
 }; //FINALIZADO
 
-
+/*
 void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 {  
     vector_s i;
@@ -69,11 +69,34 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
             vb = _mm512_load_epi32(&V2[i]);
             sum = _mm512_add_epi32(va, vb);
 
-            //_mm512_store_epi32(&res[i], sum);
+            _mm512_store_epi32(&res[i], sum);
         }
     }
 }; //ESTÁ DANDO ERRO!
+*/
 
+
+void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
+{  
+    vector_s i;
+    __m512i va, vb, sum;
+
+
+    if (size > 16)
+    {
+        
+        sum = _mm512_setzero_epi32();
+
+        for (i = 0; i < size; i += 16)
+        {
+            va = _mm512_loadu_si512(&V1[i]);
+            vb = _mm512_loadu_si512(&V2[i]);
+            sum = _mm512_add_epi32(va, vb);
+
+            _mm512_store_si512(&res[i], sum);
+        }
+    }
+}; //ESTÁ DANDO ERRO!
 
 
 void print_vector(vector_t *V, vector_s size)
