@@ -38,7 +38,7 @@ CFLAGS  = -pipe \
 	-Wvolatile-register-var \
 	-Wwrite-strings \
 	#IMPORTANT:
-	-march=native -mavx512f 
+	-march=native -mavx512f
 
 #------------------------------------------------------------------------------
 PROG = vec_sum

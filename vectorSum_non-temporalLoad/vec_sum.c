@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <immintrin.h>
+#include <x86intrin.h>
 #include "functions.h"
 #include "lfsr.h"
 
@@ -72,6 +73,14 @@ int main(int argc, char *argv[])
 //INICIALIZAÇÃO DOS VETORES COM OS VALORES (ALEATÓRIOS)
   init_vector(base_vec1, vector_size);
   init_vector(base_vec2, vector_size);
+
+
+#ifndef NTLOAD
+  printf("NÃO ESTÁ DEFINIDO");
+#else
+  printf("ESTÁ DEFINIDO");
+#endif
+
 
 
 //--------------------------------------------------------------
