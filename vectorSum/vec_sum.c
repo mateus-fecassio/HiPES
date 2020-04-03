@@ -75,7 +75,12 @@ int main(int argc, char *argv[])
 
 
 //--------------------------------------------------------------
-  fprintf(stdout, "Soma vetorial (SEM vetorização):\n");
+  #ifndef NTLOAD
+    fprintf(stdout, "Soma vetorial (SEM vetorização):\n");
+  #else
+    fprintf(stdout, "Soma vetorial (SEM vetorização e load atemporal):\n");
+  #endif
+
   for (i = 0; i < iterations; ++i)
   {
     //preencher o vetor com zeros
@@ -98,7 +103,12 @@ int main(int argc, char *argv[])
   fprintf(stdout, "\n\n\n");
 
 //--------------------------------------------------------------
-  fprintf(stdout, "Soma vetorial (COM vetorização):\n");
+  #ifndef NTLOAD
+    fprintf(stdout, "Soma vetorial (SEM vetorização):\n");
+  #else
+    fprintf(stdout, "Soma vetorial (COM vetorização e load atemporal):\n");
+  #endif
+  
   for (i = 0; i < iterations; ++i)
   {
     //preencher o vetor com zeros
@@ -108,7 +118,7 @@ int main(int argc, char *argv[])
     start = timestamp();
     
     //SOMA VETORIAL, com vetorização
-    vectorSum_vec(base_vec1, base_vec2, V, vector_size);
+    vectorSum_opt(base_vec1, base_vec2, V, vector_size);
 
     end = timestamp();
 
