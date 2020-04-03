@@ -37,6 +37,7 @@ CFLAGS  = -pipe \
 	-Wunsafe-loop-optimizations \
 	-Wvolatile-register-var \
 	-Wwrite-strings \
+	##IMPORTANTE:
 	-march=native -mavx512f
 
 #------------------------------------------------------------------------------
