@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 
 //--------------------------------------------------------------
   #ifndef NTLOAD
-    fprintf(stdout, "Soma vetorial (SEM vetorização):\n");
+    fprintf(stdout, "Soma vetorial (COM vetorização):\n");
   #else
     fprintf(stdout, "Soma vetorial (COM vetorização e load atemporal):\n");
   #endif

@@ -3,7 +3,7 @@
 
 
 //---------------defines and typedefs---------------//
-//#define NTLOAD
+#define NTLOAD
 
 
 #ifndef NTLOAD
