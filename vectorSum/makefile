@@ -41,7 +41,7 @@ CFLAGS  = -pipe \
 	-march=native -mavx512f
 
 #------------------------------------------------------------------------------
-PROG = vec_sum
+PROG = vectorSum
 OBJS = functions.o \
 	   lfsr.o \
        $(PROG).o
