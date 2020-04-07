@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   char *str1, *str2;
   double start, end, elapsed;
   vector_t *base_vec1, *base_vec2, *V;
-  vector_s vector_size, i, iterations;
+  vector_s vector_size, vector_bytes, i, iterations;
 
 
 /* ====================== TRATAMENTO DE LINHA DE COMANDO ====================== */
@@ -55,13 +55,14 @@ int main(int argc, char *argv[])
   }
 /* ====================== FIM DO TRATAMENTO DE LINHA DE COMANDO ====================== */
   
-  vector_size = atoll(str1);
+  vector_bytes = atoll(str1) * 1024 * 1024;
+  vector_size = vector_bytes / sizeof(vector_t);
   iterations = atoll(str2);
 
 //ALOCAGEM DOS VETORES
-  base_vec1 = allocate_vector(vector_size);
-  base_vec2 = allocate_vector(vector_size);
-  V = allocate_vector(vector_size);
+  base_vec1 = allocate_vector(vector_bytes);
+  base_vec2 = allocate_vector(vector_bytes);
+  V = allocate_vector(vector_bytes);
   if (!base_vec1 || !base_vec2 || !V)
   {
     fprintf(stderr, "Erro ao alocar os vetores utilizados no algoritmo!\n");
