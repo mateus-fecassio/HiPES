@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Tamanho máximo de valores
+MAX="10"
+
 #Número de repetições
 repetitions="10"
 
@@ -12,7 +15,8 @@ image_size="1600,900" #1600x900
 	
 #MEDIÇÃO DE TEMPO
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO ..."
-for size in {1..10} ; 
+for size in {1..$MAX} ; 
 	do
+		echo "$size / $MAX (MBytes) done"
 		./vectorSum -d $size -r $repetitions >> temp.tmp
 	done		
