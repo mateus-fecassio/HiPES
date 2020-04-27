@@ -3,13 +3,19 @@
 #número de repetições
 repetitions="10"
 
+#início
+INIT=1
+
+#fim
+END=256
+
 
 cd vectorSum1
 make
 
 #MEDIÇÃO DE TEMPO
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum1 (base)..."
-for size in {1..256} ; 
+for ((size=INIT; size<=END; size++)) ; 
 	do
 		echo "$size (MBytes) done"
 		./vectorSum -d $size -r $repetitions >> temp.tmp
