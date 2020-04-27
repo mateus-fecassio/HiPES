@@ -3,7 +3,7 @@
 
 
 //---------------defines and typedefs---------------//
-#define ALIGNMENT 32
+#define ALIGNMENT 64
 
 
 typedef int vector_t;
