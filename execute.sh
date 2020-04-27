@@ -7,7 +7,7 @@ repetitions="10"
 INIT=1
 
 #fim
-END=10
+END=256
 
 
 cd vectorSum1
