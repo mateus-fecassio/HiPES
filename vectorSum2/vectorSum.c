@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 {
   int opt;
   char *str1, *str2;
-  double start, end, elapsed, smaller;
+  double start, end, elapsed;
   vector_t *base_vec1, *base_vec2, *V;
   vector_s vector_size, vector_bytes, i, iterations;
 
@@ -76,104 +76,26 @@ int main(int argc, char *argv[])
   init_vector(base_vec2, vector_size);
 
 
-//--------------------------------------------------------------
-  /*
-  #ifndef NTLOAD
-    fprintf(stdout, "Soma vetorial (SEM vetorização):\n");
-  #else
-    fprintf(stdout, "Soma vetorial (SEM vetorização e load atemporal):\n");
-  #endif
-  */
 
-
-
+//impressão do tamanho [em MBtyes] a ser testado
   fprintf(stdout, "%llu  ", atoll(str1));
 
+//-------------------------------------------------------------- [VETORIZADO]
 
-  smaller = __DBL_MAX__;
+  start = timestamp();
   for (i = 0; i < iterations; ++i)
   {
     //preencher o vetor com zeros
     memset(V, 0, vector_size * sizeof(vector_t));
 
-    start = timestamp();
-    
-    //SOMA VETORIAL, sem vetorização
-    vectorSum(base_vec1, base_vec2, V, vector_size);
-
-    end = timestamp();
-
-    elapsed = end - start;
-
-    if (elapsed < smaller)
-      smaller = elapsed;
-
-
-    //fprintf(stdout, "repetition %llu = %.5g(ms)\n", i+1, elapsed);
-}
-fprintf(stdout, "%.8g  ", smaller);
-
-//--------------------------------------------------------------
-
-  //fprintf(stdout, "\n\n\n");
-
-//--------------------------------------------------------------
-  /*
-  #ifndef NTLOAD
-    fprintf(stdout, "Soma vetorial (COM vetorização):\n");
-  #else
-    fprintf(stdout, "Soma vetorial (COM vetorização e load atemporal):\n");
-  #endif
-  */
-  smaller = __DBL_MAX__;
-  for (i = 0; i < iterations; ++i)
-  {
-    //preencher o vetor com zeros
-    memset(V, 0, vector_size * sizeof(vector_t));
-
-
-    start = timestamp();
-    
     //SOMA VETORIAL, com vetorização
     vectorSum_vec(base_vec1, base_vec2, V, vector_size);
 
-    end = timestamp();
-
-    elapsed = end - start;
-
-    if (elapsed < smaller)
-      smaller = elapsed;
-
-
     //fprintf(stdout, "repetition %llu = %.5g(ms)\n", i+1, elapsed);
 }
-fprintf(stdout, "%.8g  ", smaller);
-//--------------------------------------------------------------
-
-
-smaller = __DBL_MAX__;
-  for (i = 0; i < iterations; ++i)
-  {
-    //preencher o vetor com zeros
-    memset(V, 0, vector_size * sizeof(vector_t));
-
-
-    start = timestamp();
-    
-    //SOMA VETORIAL, com vetorização e load atemporal
-    vectorSum_non(base_vec1, base_vec2, V, vector_size);
-
-    end = timestamp();
-
-    elapsed = end - start;
-
-    if (elapsed < smaller)
-      smaller = elapsed;
-
-
-    //fprintf(stdout, "repetition %llu = %.5g(ms)\n", i+1, elapsed);
-}
-fprintf(stdout, "%.8g  \n", smaller);
+  end = timestamp();
+  elapsed = end - start;
+  fprintf(stdout, "%.8g\n", elapsed);
 
 
 //DESALOCAGEM DOS VETORES
