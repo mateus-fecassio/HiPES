@@ -7,7 +7,7 @@ repetitions="10"
 INIT=1
 
 #fim
-END=256
+END=10
 
 
 cd vectorSum1
@@ -32,7 +32,7 @@ make
 
 #MEDIÇÃO DE TEMPO
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum2 (vetorizado)..."
-for size in {1..256} ; 
+for ((size=INIT; size<=END; size++)) ; 
 	do
 		echo "$size (MBytes) done"
 		./vectorSum -d $size -r $repetitions >> temp.tmp
@@ -49,7 +49,7 @@ make
 
 #MEDIÇÃO DE TEMPO
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum3 (vetorizado e nt load)..."
-for size in {1..256} ; 
+for ((size=INIT; size<=END; size++)) ; 
 	do
 		echo "$size (MBytes) done"
 		./vectorSum -d $size -r $repetitions >> temp.tmp
