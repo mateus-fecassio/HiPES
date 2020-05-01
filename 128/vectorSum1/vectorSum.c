@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 
 
 //impressão do tamanho [em MBtyes] a ser testado
-  fprintf(stdout, "%llu  ", atoll(str1));
+  //fprintf(stdout, "%llu  ", atoll(str1));
 
 
 //-------------------------------------------------------------- [NORMAL]
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
 }
   end = timestamp();
   elapsed = end - start;
-  fprintf(stdout, "%.8g\n", elapsed);
+  fprintf(stdout, "%.8g", elapsed);
 
 
 //DESALOCAGEM DOS VETORES

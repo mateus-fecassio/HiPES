@@ -18,9 +18,11 @@ echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum1 (base)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../base.tmp
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../base.csv
 make purge
 
 
