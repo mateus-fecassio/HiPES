@@ -17,7 +17,7 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum1 (base)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
+		#echo "$size (MBytes) done"
 		./vectorSum -d $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
@@ -33,10 +33,12 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum2 (vetorizado)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../vetorizado.tmp
+		#echo "$size (MBytes) done"
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > vect.tmp
+mv ./vect.tmp ../vetorizado.csv
 make purge
 
 
@@ -47,10 +49,12 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum3 (vetorizado e nt load)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../vetorizado_nt_load.tmp
+		#echo "$size (MBytes) done"
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > vectnt.tmp
+mv ./vectnt.tmp ../vetorizado_nt_load.csv
 make purge
 #---------------------------------------------------------------------
 
@@ -63,10 +67,12 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum1 (base)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../base.tmp
+		#echo "$size (MBytes) done"
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../base.csv
 make purge
 
 
@@ -77,10 +83,12 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum2 (vetorizado)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../vetorizado.tmp
+		#echo "$size (MBytes) done"
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > vect.tmp
+mv ./vect.tmp ../vetorizado.csv
 make purge
 
 
@@ -91,10 +99,12 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum3 (vetorizado e nt load)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../vetorizado_nt_load.tmp
+		#echo "$size (MBytes) done"
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > vectnt.tmp
+mv ./vectnt.tmp ../vetorizado_nt_load.csv
 make purge
 #---------------------------------------------------------------------
 
@@ -108,10 +118,12 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum1 (base)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../base.tmp
+		#echo "$size (MBytes) done"
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../base.csv
 make purge
 
 
@@ -122,10 +134,12 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum2 (vetorizado)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../vetorizado.tmp
+		#echo "$size (MBytes) done"
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > vect.tmp
+mv ./vect.tmp ../vetorizado.csv
 make purge
 
 
@@ -136,10 +150,12 @@ make
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum3 (vetorizado e nt load)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions >> temp.tmp
-	done
-mv ./temp.tmp ../vetorizado_nt_load.tmp
+		#echo "$size (MBytes) done"
+		./vectorSum -d $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > vectnt.tmp
+mv ./vectnt.tmp ../vetorizado_nt_load.csv
 make purge
 #---------------------------------------------------------------------
 

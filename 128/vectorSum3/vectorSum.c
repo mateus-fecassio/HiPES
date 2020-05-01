@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
 
 
 //impressão do tamanho [em MBtyes] a ser testado
-  fprintf(stdout, "%llu  ", atoll(str1));
+  //fprintf(stdout, "%llu  ", atoll(str1));
 
 //-------------------------------------------------------------- [VETORIZADO e LOAD ATEMPORAL]
 
