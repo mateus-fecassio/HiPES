@@ -3,6 +3,8 @@
 
 
 //---------------defines and typedefs---------------//
+#define AVX512
+#define STRIDE 16
 #define ALIGNMENT 64
 
 
