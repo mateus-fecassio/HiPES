@@ -1,0 +1,14 @@
+
+ Performance counter stats for './vectorSum -d 100 -r 10':
+
+     4,628,361,736      L1-dcache-loads                                               (37.39%)
+        71,531,447      L1-dcache-load-misses     #    1.55% of all L1-dcache hits    (49.91%)
+     2,482,799,914      L1-dcache-stores                                              (49.91%)
+         1,286,399      L1-icache-load-misses                                         (50.04%)
+           447,053      LLC-loads                                                     (50.09%)
+           512,752      LLC-load-misses           #  114.70% of all LL-cache hits     (50.09%)
+           771,531      LLC-stores                                                    (25.05%)
+           923,535      LLC-store-misses                                              (24.92%)
+
+       2.811192402 seconds time elapsed
+
