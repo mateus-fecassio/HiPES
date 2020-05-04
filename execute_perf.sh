@@ -103,3 +103,5 @@ perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
 mv ./temp.tmp ../../RESULTADOS/$test/perf/512-vetorizado_nt_load.tmp
 make purge
 #---------------------------------------------------------------------
+
+echo "TODOS OS TESTES FORAM CONCLUÍDOS COM SUCESSO!"
