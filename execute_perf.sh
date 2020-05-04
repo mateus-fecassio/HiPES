@@ -1,5 +1,7 @@
 #!/bin/bash
 
+teste='TESTE1'
+
 size=100
 repetitions=10
 flags='L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses'
@@ -12,7 +14,7 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum1 (base)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_base.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/128-base.tmp
 make purge
 
 
@@ -22,7 +24,7 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum2 (vetorizado)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_vetorizado.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/128-vetorizado.tmp
 make purge
 
 
@@ -32,7 +34,7 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum3 (vetorizado e nt load)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_vetorizado_nt_load.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/128-vetorizado_nt_load.tmp
 make purge
 #---------------------------------------------------------------------
 
@@ -45,7 +47,7 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum1 (base)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_base.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/256-base.tmp
 make purge
 
 
@@ -55,7 +57,7 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum2 (vetorizado)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_vetorizado.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/256-vetorizado.tmp
 make purge
 
 
@@ -65,7 +67,7 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum3 (vetorizado e nt load)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_vetorizado_nt_load.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/256-vetorizado_nt_load.tmp
 make purge
 #---------------------------------------------------------------------
 
@@ -78,7 +80,7 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum1 (base)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_base.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/512-base.tmp
 make purge
 
 
@@ -88,7 +90,7 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum2 (vetorizado)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_vetorizado.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/512-vetorizado.tmp
 make purge
 
 
@@ -98,6 +100,6 @@ make
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum3 (vetorizado e nt load)..."
 perf stat -e $flags ./vectorSum -d $size -r $repetitions 2>> temp.tmp
-mv ./temp.tmp ../perf_vetorizado_nt_load.tmp
+mv ./temp.tmp ../../RESULTADOS/$test/perf/512-vetorizado_nt_load.tmp
 make purge
 #---------------------------------------------------------------------

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#NÚMERO DO TESTE
+#NÚMERO DO TESTE.Lembrar de criar a pasta antes!!
 test='TESTE2'
 
 #número de repetições
