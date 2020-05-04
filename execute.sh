@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#NÚMERO DO TESTE
+test='TESTE2'
+
 #número de repetições
 repetitions="10"
 
@@ -22,7 +25,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
-mv ./base.tmp ../base.csv
+mv ./base.tmp ../../RESULTADOS/$test/128-base.csv
 make purge
 
 
@@ -38,7 +41,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > vect.tmp
-mv ./vect.tmp ../vetorizado.csv
+mv ./vect.tmp ../../RESULTADOS/$test/128-vetorizado.csv
 make purge
 
 
@@ -54,7 +57,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > vectnt.tmp
-mv ./vectnt.tmp ../vetorizado_nt_load.csv
+mv ./vectnt.tmp ../../RESULTADOS/$test/128-vetorizado_nt_load.csv
 make purge
 #---------------------------------------------------------------------
 
@@ -72,7 +75,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
-mv ./base.tmp ../base.csv
+mv ./base.tmp ../../RESULTADOS/$test/256-base.csv
 make purge
 
 
@@ -88,7 +91,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > vect.tmp
-mv ./vect.tmp ../vetorizado.csv
+mv ./vect.tmp ../../RESULTADOS/$test/256-vetorizado.csv
 make purge
 
 
@@ -104,7 +107,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > vectnt.tmp
-mv ./vectnt.tmp ../vetorizado_nt_load.csv
+mv ./vectnt.tmp ../../RESULTADOS/$test/256-vetorizado_nt_load.csv
 make purge
 #---------------------------------------------------------------------
 
@@ -123,7 +126,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
-mv ./base.tmp ../base.csv
+mv ./base.tmp ../../RESULTADOS/$test/512-base.csv
 make purge
 
 
@@ -139,7 +142,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > vect.tmp
-mv ./vect.tmp ../vetorizado.csv
+mv ./vect.tmp ../../RESULTADOS/$test/512-vetorizado.csv
 make purge
 
 
@@ -155,7 +158,7 @@ for ((size=INIT; size<=END; size++)) ;
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > vectnt.tmp
-mv ./vectnt.tmp ../vetorizado_nt_load.csv
+mv ./vectnt.tmp ../../RESULTADOS/$test/512-vetorizado_nt_load.csv
 make purge
 #---------------------------------------------------------------------
 
