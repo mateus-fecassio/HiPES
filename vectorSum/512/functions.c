@@ -1,13 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/mman.h>
 #include <string.h>
 #include <stdbool.h>
 #include <sys/time.h>
 #include <time.h>
+#include <assert.h>
+#include <unistd.h>
 #include <limits.h>
 #include <immintrin.h>
 #include "lfsr.h"
 #include "functions.h"
+
+
 
 
 
@@ -24,6 +32,33 @@ vector_t* allocate_vector(vector_s size)
     vector_t *V = (vector_t *)aligned_alloc(ALIGNMENT, size * sizeof(vector_t));
     return V;
 }; //FINALIZADO
+
+
+void die(char *msg)
+{
+	printf("%s\n", msg);
+	exit(1);
+}; //FINALIZADO
+
+
+void *get_uncached_mem(char *dev, int size)
+{	
+	assert(PAGE_SIZE != -1);
+	
+	int fd = open(dev, O_RDWR, 0);
+	if (fd == -1) die("couldn't open device");
+	
+	//printf("mmap()'ing %s\n", dev);
+
+	if (size & ~PAGE_MASK)
+		size = (size & PAGE_MASK) + PAGE_SIZE;
+
+	void *map = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+	if (map == MAP_FAILED)
+		die("mmap failed.");
+	return map;
+}; //TESTAR
+
 
 
 void init_vector(vector_t *V, vector_s size)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-test='TESTE1'
+test='TESTE2'
 
 size=100
 repetitions=10
