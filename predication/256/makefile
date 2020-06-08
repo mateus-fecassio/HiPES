@@ -38,10 +38,10 @@ CFLAGS  = -pipe \
 	-Wvolatile-register-var \
 	-Wwrite-strings \
 	\
-	-march=native -msse2
+	-march=native -mavx
 
 #------------------------------------------------------------------------------
-PROG = vectorSum
+PROG = predication
 OBJS = functions.o \
 	   lfsr.o \
        $(PROG).o

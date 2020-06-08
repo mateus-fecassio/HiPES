@@ -4,7 +4,7 @@
 
 //---------------defines and typedefs---------------//
 #define AVX256
-#define STRIDE 256/sizeof(vector_t)
+#define STRIDE 256/(sizeof(vector_t) * 8)
 #define ALIGNMENT 64
 #define PAGE_SIZE (sysconf(_SC_PAGESIZE))
 #define PAGE_MASK (~(PAGE_SIZE - 1))
