@@ -21,7 +21,7 @@
 
 static void usage(char *progname)
 {
-  fprintf(stderr, "Forma de uso: %s -l <lenght> -v <value> -s <vector_size> -r <number_of_repetitions>\n", progname);
+  fprintf(stderr, "Forma de uso: %s -o <[normal, predicated]> -l <lenght> -v <value> -s <vector_size> -r <number_of_repetitions>\n", progname);
   exit(EXIT_FAILURE);
 };
 
@@ -29,7 +29,7 @@ static void usage(char *progname)
 int main(int argc, char *argv[])
 {
   int opt, value;
-  char *str1, *str2, *val, *len;
+  char *str1, *str2, *val, *len, *operation;
   double start, end, elapsed;
   long long int lenght;
   vector_t *base_vec, *vec_cmp, *V;
@@ -37,13 +37,17 @@ int main(int argc, char *argv[])
 
 
 /* ====================== TRATAMENTO DE LINHA DE COMANDO ====================== */
-  if (argc < 9)
+  if (argc < 11)
     usage(argv[0]);
   
-  while ( (opt = getopt (argc, argv, "l:v:s:r:")) != -1 )
+  while ( (opt = getopt (argc, argv, "o:l:v:s:r:")) != -1 )
   {
     switch (opt)
     {
+      case 'o':
+        operation = optarg;
+        break;
+      
       case 's':
         str1 = optarg;
         break;
@@ -104,20 +108,33 @@ int main(int argc, char *argv[])
   //fprintf(stdout, "%llu  ", atoll(str1));
 
 //-------------------------------------------------------------- []
-    start = timestamp();
-    for (i = 0; i < iterations; ++i)
+    if (!strcmp(operation, "normal"))
     {
-      
-      memset(V, 0, vector_size * sizeof(vector_t));
-
-      predicate(base_vec, vec_cmp, V, vector_size, value);
-
-      //SOMA VETORIAL, com vetorização
-      
+      start = timestamp();
+      for (i = 0; i < iterations; ++i)
+      {
+        sum_selection_normal(base_vec, vector_size, value);
+      }
+      end = timestamp();
+      elapsed = end - start;
+      fprintf(stdout, "%.8g\n", elapsed);
     }
-    end = timestamp();
-    elapsed = end - start;
-    fprintf(stdout, "%.8g\n", elapsed);
+    else if (!strcmp(operation, "predicated"))
+    {
+      start = timestamp();
+      for (i = 0; i < iterations; ++i)
+      {
+        predicate(base_vec, vec_cmp, V, vector_size, value);
+      }
+      end = timestamp();
+      elapsed = end - start;
+      fprintf(stdout, "%.8g\n", elapsed);
+    }
+    else
+    {
+      usage(argv[0]);
+    }
+    
 //fprintf(stdout, "SOMA DE base_vec1[1] (%d) + base_vec2[1] (%d) = %d\n", base_vec1[1], base_vec2[1], V[1]);
 
 
@@ -125,7 +142,6 @@ int main(int argc, char *argv[])
   free(base_vec);
   free(vec_cmp);
   free(V);
-
 
   exit(EXIT_SUCCESS);
 }

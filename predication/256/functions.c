@@ -199,6 +199,19 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 }; //TESTAR
 
 
+void sum_selection_normal(vector_t *base_vec, vector_s size, int value)
+{  
+    vector_s i, result;
+
+    result = 0;
+    for (i = 0; i < size; ++i)
+    {
+        if (base_vec[i] <= value)
+            result += base_vec[i]; 
+    }      
+}; //FINALIZADO
+
+
 void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
 {
     vector_s i;
