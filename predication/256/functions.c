@@ -214,18 +214,17 @@ void sum_selection_normal(vector_t *base_vec, vector_s size, int value)
 
 void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
 {
-    vector_s i;
+    vector_s i, sum_return = 0;
 
     #ifdef AVX256
         int sum = 0;
-        unsigned long long sum_return = 0;
         __m256i base, vcmp, temp;
         __m512i temp_cast;
         __mmask8 k_mask, dst_mask;
 
     
         temp = _mm256_setzero_si256();
-        k_mask = _cvtu32_mask8(1);
+        k_mask = _cvtu32_mask8(1); //k_mask deve ser 1 para a função fazer a comparação
         dst_mask = _cvtu32_mask8(0);
 
         for (i = 0; i < size; i += STRIDE)
@@ -235,7 +234,6 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
 
             //seleciona os valores que passam no critério
             dst_mask = _mm256_mask_cmplt_epu32_mask(k_mask, base, vcmp);
-
 
             //atualizar os valores de 'base', que agora têm 0 ou um número menor do que o valor de entrada
             base = _mm256_maskz_add_epi32(dst_mask, base, temp);
