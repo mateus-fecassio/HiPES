@@ -218,17 +218,20 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
 
     #ifdef AVX256
         __m256i va, vb, sum;
-        __mmask8 mask;
+        __mmask8 k1, mask;
 
             
         sum = _mm256_setzero_si256();
+        k1 = _cvtu32_mask8(1);
+        mask = _cvtu32_mask8(0);
+
         for (i = 0; i < size; i += STRIDE)
         {
             va = _mm256_loadu_si256(&base_vec[i]);
             vb = _mm256_loadu_si256(&vec_cmp[i]);
 
     
-            _mm256_mask_cmplt_epu32_mask(mask, va, vb);
+            mask = _mm256_mask_cmplt_epu32_mask(k1, va, vb);
 
             //_mm512_store_si512(&res[i], (__m512i)mask);
         }  

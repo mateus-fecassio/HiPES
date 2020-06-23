@@ -1,3 +1,5 @@
+// ./predication -o predicated -l 1023 -v 128 -s 1 -r 10
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
