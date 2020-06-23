@@ -217,23 +217,34 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
     vector_s i;
 
     #ifdef AVX256
-        __m256i va, vb, sum;
-        __mmask8 k1, mask;
+        int sum = 0;
+        unsigned long long sum_return = 0;
+        __m256i base, vcmp, temp;
+        __m512i temp_cast;
+        __mmask8 k_mask, dst_mask;
 
-            
-        sum = _mm256_setzero_si256();
-        k1 = _cvtu32_mask8(1);
-        mask = _cvtu32_mask8(0);
+    
+        temp = _mm256_setzero_si256();
+        k_mask = _cvtu32_mask8(1);
+        dst_mask = _cvtu32_mask8(0);
 
         for (i = 0; i < size; i += STRIDE)
         {
-            va = _mm256_loadu_si256(&base_vec[i]);
-            vb = _mm256_loadu_si256(&vec_cmp[i]);
+            base = _mm256_loadu_si256(&base_vec[i]);
+            vcmp = _mm256_loadu_si256(&vec_cmp[i]);
 
-    
-            mask = _mm256_mask_cmplt_epu32_mask(k1, va, vb);
+            //seleciona os valores que passam no critério
+            dst_mask = _mm256_mask_cmplt_epu32_mask(k_mask, base, vcmp);
 
-            //_mm512_store_si512(&res[i], (__m512i)mask);
+
+            //atualizar os valores de 'base', que agora têm 0 ou um número menor do que o valor de entrada
+            base = _mm256_maskz_add_epi32(dst_mask, base, temp);
+
+
+            //fazer a redução do valor base em um valor para ser acrescido na soma
+            temp_cast =_mm512_castsi256_si512(base);
+            sum = _mm512_reduce_add_epi32(temp_cast);
+            sum_return += sum;
         }  
     #endif
 }; //TESTAR
