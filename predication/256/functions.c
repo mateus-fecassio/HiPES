@@ -206,7 +206,7 @@ void sum_selection_normal(vector_t *base_vec, vector_s size, int value)
     result = 0;
     for (i = 0; i < size; ++i)
     {
-        if (base_vec[i] <= value)
+        if (base_vec[i] < value)
             result += base_vec[i]; 
     }      
 }; //FINALIZADO
@@ -224,7 +224,7 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
 
     
         temp = _mm256_setzero_si256();
-        k_mask = _cvtu32_mask8(1); //k_mask deve ser 1 para a função fazer a comparação
+        k_mask = _cvtu32_mask8(255); //k_mask deve conter 1 para a função fazer a comparação (a função pede esse vetor de máscara para determinar, no vetor de comparação, quais dos 16 elementos vão ser comparados)
         dst_mask = _cvtu32_mask8(0);
 
         for (i = 0; i < size; i += STRIDE)
@@ -233,10 +233,10 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
             vcmp = _mm256_loadu_si256(&vec_cmp[i]);
 
             //seleciona os valores que passam no critério
-            dst_mask = _mm256_mask_cmplt_epu32_mask(k_mask, base, vcmp);
+            dst_mask = _mm256_mask_cmplt_epu32_mask(k_mask, base, vcmp); //VPCMPUD, pag. 1698 a 1700
 
             //atualizar os valores de 'base', que agora têm 0 ou um número menor do que o valor de entrada
-            base = _mm256_maskz_add_epi32(dst_mask, base, temp);
+            base = _mm256_maskz_add_epi32(dst_mask, base, temp); //VPADDD, pag. 856 a  862
 
 
             //fazer a redução do valor base em um valor para ser acrescido na soma

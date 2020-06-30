@@ -137,7 +137,6 @@ int main(int argc, char *argv[])
       usage(argv[0]);
     }
     
-//fprintf(stdout, "SOMA DE base_vec1[1] (%d) + base_vec2[1] (%d) = %d\n", base_vec1[1], base_vec2[1], V[1]);
 
 
 //DESALOCAGEM DOS VETORES
