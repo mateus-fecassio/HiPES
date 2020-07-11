@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#NÚMERO DO TESTE.Lembrar de criar a pasta antes!!
-test='TESTE2'
 
 #número de repetições
 repetitions="10"
@@ -12,154 +10,223 @@ INIT=1
 #fim
 END=100
 
-#------------------------------------------------------------------128
+
+#------------------------------------------------------------------
+test='TESTE1'
+#------------------------------------------------------------------
+#---------------------128
+cd 1-vectorSum
 cd 128
-cd vectorSum1
 make
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum1 (base)..."
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
+		./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
-mv ./base.tmp ../../RESULTADOS/$test/128-base.csv
-make purge
+mv ./base.tmp ../../RESULTADOS/$test/128-normal.csv
 
 
-cd ..
-cd vectorSum2
-make
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum2 (vetorizado)..."
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (vetorizado)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
-		printf "$((size)) "
-		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > vect.tmp
-mv ./vect.tmp ../../RESULTADOS/$test/128-vetorizado.csv
-make purge
-
-
-cd ..
-cd vectorSum3
-make
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum3 (vetorizado e nt load)..."
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
-		printf "$((size)) "
-		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > vectnt.tmp
-mv ./vectnt.tmp ../../RESULTADOS/$test/128-vetorizado_nt_load.csv
-make purge
-#---------------------------------------------------------------------
-
-#------------------------------------------------------------------256
-cd ../..
-cd 256
-cd vectorSum1
-make
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum1 (base)..."
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
+		./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
-mv ./base.tmp ../../RESULTADOS/$test/256-base.csv
-make purge
+mv ./base.tmp ../../RESULTADOS/$test/128-vectorizing.csv
 
 
-cd ..
-cd vectorSum2
-make
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum2 (vetorizado)..."
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (non-temporal load)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
-		printf "$((size)) "
-		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > vect.tmp
-mv ./vect.tmp ../../RESULTADOS/$test/256-vetorizado.csv
-make purge
-
-
-cd ..
-cd vectorSum3
-make
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum3 (vetorizado e nt load)..."
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
-		printf "$((size)) "
-		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > vectnt.tmp
-mv ./vectnt.tmp ../../RESULTADOS/$test/256-vetorizado_nt_load.csv
-make purge
-#---------------------------------------------------------------------
-
-
-#------------------------------------------------------------------512
-cd ../..
-cd 512
-cd vectorSum1
-make
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum1 (base)..."
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
+		./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
-mv ./base.tmp ../../RESULTADOS/$test/512-base.csv
+mv ./base.tmp ../../RESULTADOS/$test/128-nt_load.csv
+
 make purge
 
 
-cd ..
-cd vectorSum2
+
+#---------------------256
+cd ../256
 make
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum2 (vetorizado)..."
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
+		./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > vect.tmp
-mv ./vect.tmp ../../RESULTADOS/$test/512-vetorizado.csv
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/256-normal.csv
+
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (vetorizado)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/256-vectorizing.csv
+
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (non-temporal load)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/256-nt_load.csv
+
 make purge
 
 
-cd ..
-cd vectorSum3
+
+#---------------------512
+cd ../512
 make
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum3 (vetorizado e nt load)..."
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
-		./vectorSum -d $size -r $repetitions > temp.tmp
+		./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > vectnt.tmp
-mv ./vectnt.tmp ../../RESULTADOS/$test/512-vetorizado_nt_load.csv
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/512-normal.csv
+
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (vetorizado)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/512-vectorizing.csv
+
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (non-temporal load)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/512-nt_load.csv
+
 make purge
 #---------------------------------------------------------------------
+
+cd ../../2-predication/
+
+#------------------------------------------------------------------
+test='TESTE2'
+#------------------------------------------------------------------
+#---------------------128
+cd 128
+make
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./predication -o normal -l 1023 -v 128 -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/128-normal.csv
+
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (predicado)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./predication -o predicated -l 1023 -v 128 -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/128-predicated.csv
+
+make purge
+
+
+
+#---------------------256
+cd ../256
+make
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./predication -o normal -l 1023 -v 128 -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/256-normal.csv
+
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (predicado)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./predication -o predicated -l 1023 -v 128 -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/256-predicated.csv
+
+make purge
+
+
+
+#---------------------512
+cd ../512
+make
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./predication -o normal -l 1023 -v 128 -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/512-normal.csv
+
+
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (predicado)..."
+for ((size=INIT; size<=END; size++)) ; 
+	do
+		#echo "$size (MBytes) done"
+		./predication -o predicated -l 1023 -v 128 -s $size -r $repetitions > temp.tmp
+		printf "$((size)) "
+		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
+	done > base.tmp
+mv ./base.tmp ../../RESULTADOS/$test/512-predicated.csv
+
+make purge
+
+
+
+
+
 
 echo "TODOS OS TESTES FORAM CONCLUÍDOS COM SUCESSO!"
