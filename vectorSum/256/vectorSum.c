@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < iterations; ++i)
     {
       //preencher o vetor com zeros
-      memset(V, 0, vector_size * sizeof(vector_t));
+      //memset(V, 0, vector_size * sizeof(vector_t));
 
       //SOMA VETORIAL, sem vetorização
       vectorSum(base_vec1, base_vec2, V, vector_size);
@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < iterations; ++i)
     {
       
-      memset(V, 0, vector_size * sizeof(vector_t));
+      //memset(V, 0, vector_size * sizeof(vector_t));
 
       //SOMA VETORIAL, com vetorização
       vectorSum_vec(base_vec1, base_vec2, V, vector_size);
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < iterations; ++i)
     {
       
-      memset(V, 0, vector_size * sizeof(vector_t));
+      //memset(V, 0, vector_size * sizeof(vector_t));
 
       //SOMA VETORIAL, com vetorização e load atemporal
       vectorSum_non(base_vec1, base_vec2, V, vector_size);

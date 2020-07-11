@@ -72,6 +72,7 @@ void init_vector(vector_t *V, vector_s size)
         random_value = get_random(); // a value between 0 and 65535 (0xffff) is returned
         V[i] = random_value;
     }
+    _mm_mfence();
 }; //FINALIZADO
 
 
@@ -82,7 +83,8 @@ void vectorSum(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
     for (i = 0; i < size; ++i)
     {
         res[i] = V1[i] + V2[i]; 
-    }      
+    }
+    _mm_mfence();      
 }; //FINALIZADO
 
 
@@ -102,6 +104,7 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 
             _mm_store_si128(&res[i], sum);
         }
+        _mm_mfence();
     #endif
 
     #ifdef AVX256
@@ -116,7 +119,8 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
             sum = _mm256_add_epi32(va, vb);
 
             _mm256_store_si256(&res[i], sum);
-        } 
+        }
+        _mm_mfence(); 
     #endif
 
     #ifdef AVX512
@@ -132,7 +136,8 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
             sum = _mm512_add_epi32(va, vb);
 
             _mm512_store_si512(&res[i], sum);
-        }  
+        }
+        _mm_mfence();  
     #endif
 
 }; //TESTAR
@@ -155,6 +160,7 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 
             _mm_store_si128(&res[i], sum);
         }
+        _mm_mfence();
     #endif
 
     #ifdef AVX256
@@ -171,6 +177,7 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 
             _mm256_store_si256(&res[i], sum);
         }
+        _mm_mfence();
     #endif
 
     #ifdef AVX512
@@ -187,6 +194,7 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 
             _mm512_store_si512(&res[i], sum);
         }
+        _mm_mfence();
     #endif
 
 }; //TESTAR
