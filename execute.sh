@@ -8,7 +8,7 @@ repetitions="10"
 INIT=1
 
 #fim
-END=2
+END=100
 
 flags='L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses'
 
@@ -23,7 +23,7 @@ test='TESTE1'
 #---------------------128
 cd 1-vectorSum
 cd 128
-make
+make 2> makefile.txt
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)... ---128"
 for ((size=INIT; size<=END; size++)) ; 
@@ -84,7 +84,7 @@ make purge
 
 #---------------------256
 cd ../256
-make
+make 2> makefile.txt
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
@@ -145,7 +145,7 @@ make purge
 
 #---------------------512
 cd ../512
-make
+make 2> makefile.txt
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)... ---512"
 for ((size=INIT; size<=END; size++)) ; 
@@ -210,7 +210,7 @@ test='TESTE2'
 #------------------------------------------------------------------
 #---------------------128
 cd 128
-make
+make 2> makefile.txt
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)... ---128"
 for ((size=INIT; size<=END; size++)) ; 
@@ -253,7 +253,7 @@ make purge
 
 #---------------------256
 cd ../256
-make
+make 2> makefile.txt
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
@@ -296,7 +296,7 @@ make purge
 
 #---------------------512
 cd ../512
-make
+make 2> makefile.txt
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)... ---512"
 for ((size=INIT; size<=END; size++)) ; 
