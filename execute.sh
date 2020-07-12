@@ -38,8 +38,8 @@ mv ./base.tmp ../../RESULTADOS/$test/128-normal.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (normal)... ---128"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/128-normal_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-normal_$size.txt
 	done
 
 
@@ -56,8 +56,8 @@ mv ./base.tmp ../../RESULTADOS/$test/128-vectorizing.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (vetorizado)... ---128"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/128-vectorizing_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-vectorizing_$size.txt
 	done
 
 
@@ -74,8 +74,8 @@ mv ./base.tmp ../../RESULTADOS/$test/128-nt_load.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---128"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/128-nt_load_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-nt_load_$size.txt
 	done
 
 make purge
@@ -99,8 +99,8 @@ mv ./base.tmp ../../RESULTADOS/$test/256-normal.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (normal)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/256-normal_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-normal_$size.txt
 	done
 
 
@@ -117,8 +117,8 @@ mv ./base.tmp ../../RESULTADOS/$test/256-vectorizing.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (vetorizado)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/256-vectorizing_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-vectorizing_$size.txt
 	done
 
 
@@ -135,8 +135,8 @@ mv ./base.tmp ../../RESULTADOS/$test/256-nt_load.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/256-nt_load_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-nt_load_$size.txt
 	done
 
 make purge
@@ -160,8 +160,8 @@ mv ./base.tmp ../../RESULTADOS/$test/512-normal.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (normal)... ---512"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/512-normal_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-normal_$size.txt
 	done
 
 
@@ -178,8 +178,8 @@ mv ./base.tmp ../../RESULTADOS/$test/512-vectorizing.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (vetorizado)... ---512"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/256-vectorizing_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-vectorizing_$size.txt
 	done
 
 
@@ -196,8 +196,8 @@ mv ./base.tmp ../../RESULTADOS/$test/512-nt_load.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/256-nt_load_$size.txt
+		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-nt_load_$size.txt
 	done
 
 make purge
@@ -225,8 +225,8 @@ mv ./base.tmp ../../RESULTADOS/$test/128-normal.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (normal)... ---128"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./predication -o normal -l $leng -v $value -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/128-normal_$size.txt
+		perf stat -e $flags ./predication -o normal -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-normal_$size.txt
 	done
 
 
@@ -243,8 +243,8 @@ mv ./base.tmp ../../RESULTADOS/$test/128-predicated.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---128"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/128-predicated_$size.txt
+		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-predicated_$size.txt
 	done
 
 make purge
@@ -268,8 +268,8 @@ mv ./base.tmp ../../RESULTADOS/$test/256-normal.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (normal)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./predication -o normal -l $leng -v $value -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/256-normal_$size.txt
+		perf stat -e $flags ./predication -o normal -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-normal_$size.txt
 	done
 
 
@@ -286,8 +286,8 @@ mv ./base.tmp ../../RESULTADOS/$test/256-predicated.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/256-predicated_$size.txt
+		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-predicated_$size.txt
 	done
 	
 make purge
@@ -311,8 +311,8 @@ mv ./base.tmp ../../RESULTADOS/$test/512-normal.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (normal)... ---512"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./predication -o normal -l $leng -v $value -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/512-normal_$size.txt
+		perf stat -e $flags ./predication -o normal -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-normal_$size.txt
 	done
 
 
@@ -329,8 +329,8 @@ mv ./base.tmp ../../RESULTADOS/$test/512-predicated.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---512"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temp.tmp
-		mv ./temp.tmp ../../RESULTADOS/$test/perf/512-predicated_$size.txt
+		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-predicated_$size.txt
 	done
 
 make purge
