@@ -16,6 +16,8 @@ leng=1023
 
 value=128
 
+date >> time.txt
+
 
 #------------------------------------------------------------------
 test='TESTE1'
@@ -334,6 +336,10 @@ for ((size=INIT; size<=END; size++)) ;
 	done
 
 make purge
+
+
+cd ../../
+date >> time.txt
 
 
 
