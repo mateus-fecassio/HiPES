@@ -8,7 +8,7 @@ repetitions="10"
 INIT=1
 
 #fim
-END=2
+END=100
 
 flags='L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses'
 
