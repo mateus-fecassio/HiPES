@@ -1,0 +1,14 @@
+
+ Performance counter stats for './vectorSum -m WB -d NULL -o normal -s 35 -r 10':
+
+     2,072,520,356      L1-dcache-loads                                               (37.64%)
+        19,736,061      L1-dcache-load-misses     #    0.95% of all L1-dcache hits    (50.11%)
+       737,920,454      L1-dcache-stores                                              (50.11%)
+           323,141      L1-icache-load-misses                                         (50.11%)
+            71,540      LLC-loads                                                     (49.89%)
+            22,401      LLC-load-misses           #   31.31% of all LL-cache hits     (49.89%)
+           319,086      LLC-stores                                                    (24.94%)
+           300,918      LLC-store-misses                                              (24.94%)
+
+       1.251231080 seconds time elapsed
+

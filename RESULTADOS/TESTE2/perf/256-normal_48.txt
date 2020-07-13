@@ -1,0 +1,14 @@
+
+ Performance counter stats for './predication -o normal -l 1023 -v 128 -s 48 -r 10':
+
+     1,787,370,096      L1-dcache-loads                                               (37.18%)
+         9,709,223      L1-dcache-load-misses     #    0.54% of all L1-dcache hits    (49.81%)
+       564,427,758      L1-dcache-stores                                              (50.10%)
+           257,278      L1-icache-load-misses                                         (50.39%)
+           299,075      LLC-loads                                                     (50.49%)
+           235,388      LLC-load-misses           #   78.71% of all LL-cache hits     (50.19%)
+            78,755      LLC-stores                                                    (24.67%)
+            73,617      LLC-store-misses                                              (24.67%)
+
+       1.362693041 seconds time elapsed
+
