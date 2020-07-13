@@ -38,7 +38,7 @@ CFLAGS  = -pipe \
 	-Wvolatile-register-var \
 	-Wwrite-strings \
 	\
-	-march=native -msse2
+	-march=native -msse2 -mavx512f
 
 #------------------------------------------------------------------------------
 PROG = predication
