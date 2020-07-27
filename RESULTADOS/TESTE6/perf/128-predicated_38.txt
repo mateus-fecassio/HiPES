@@ -1,0 +1,14 @@
+
+ Performance counter stats for './predication -o predicated -l 1023 -v 128 -s 38 -r 10':
+
+     1,202,638,734      L1-dcache-loads                                               (36.81%)
+        14,143,281      L1-dcache-load-misses     #    1.18% of all L1-dcache hits    (49.45%)
+       662,777,440      L1-dcache-stores                                              (49.77%)
+           221,556      L1-icache-load-misses                                         (50.19%)
+           263,658      LLC-loads                                                     (50.55%)
+           259,173      LLC-load-misses           #   98.30% of all LL-cache hits     (50.55%)
+            75,469      LLC-stores                                                    (24.95%)
+            54,957      LLC-store-misses                                              (24.54%)
+
+       0.950081846 seconds time elapsed
+

@@ -1,0 +1,14 @@
+
+ Performance counter stats for './vectorSum -m WB -d NULL -o vectorizing -s 57 -r 10':
+
+     2,492,664,592      L1-dcache-loads                                               (37.22%)
+        31,238,774      L1-dcache-load-misses     #    1.25% of all L1-dcache hits    (49.85%)
+     1,310,433,700      L1-dcache-stores                                              (50.08%)
+           437,379      L1-icache-load-misses                                         (50.31%)
+           286,607      LLC-loads                                                     (50.38%)
+           140,191      LLC-load-misses           #   48.91% of all LL-cache hits     (50.15%)
+           551,956      LLC-stores                                                    (24.80%)
+           533,144      LLC-store-misses                                              (24.80%)
+
+       1.742410360 seconds time elapsed
+
