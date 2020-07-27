@@ -20,7 +20,7 @@ date >> time.txt
 
 
 #------------------------------------------------------------------
-test='TESTE3'
+test='TESTE5'
 #------------------------------------------------------------------
 #---------------------128
 cd 1-vectorSum
@@ -181,7 +181,7 @@ echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (vetorizado)... --
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temporary.tmp
-		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-vectorizing_$size.txt
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-vectorizing_$size.txt
 	done
 
 
@@ -199,7 +199,7 @@ echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temporary.tmp
-		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-nt_load_$size.txt
+		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-nt_load_$size.txt
 	done
 
 make purge
@@ -208,7 +208,7 @@ make purge
 cd ../../2-predication/
 
 #------------------------------------------------------------------
-test='TESTE4'
+test='TESTE6'
 #------------------------------------------------------------------
 #---------------------128
 cd 128
