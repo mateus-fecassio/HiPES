@@ -4,7 +4,7 @@
 
 //---------------defines and typedefs---------------//
 #define AVX512
-#define STRIDE 256/(sizeof(vector_t) * 8)
+#define STRIDE 512/(sizeof(vector_t) * 8)
 #define ALIGNMENT 64
 #define PAGE_SIZE (sysconf(_SC_PAGESIZE))
 #define PAGE_MASK (~(PAGE_SIZE - 1))
@@ -25,6 +25,7 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size);
 void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size);
 void sum_selection_normal(vector_t *base_vec, vector_s size, int value);
 void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *V, vector_s size, long long int value);
+void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value);
 void print_vector(vector_t *V, vector_s size);
 
 #endif
