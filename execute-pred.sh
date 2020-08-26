@@ -8,9 +8,24 @@ repetitions="10"
 INIT=1
 
 #fim
-END=100
+END=2
 
-flags='L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses'
+flags='
+cache-misses,cpu-cycles,
+L1-dcache-loads,
+L1-dcache-load-misses,
+L1-dcache-stores,
+L1-icache-load-misses,
+LLC-loads,
+LLC-load-misses,
+LLC-stores,
+LLC-store-misses,
+mem_load_retired.l1_hit,
+mem_load_retired.l1_miss,
+mem_load_retired.l2_hit ,
+mem_load_retired.l2_miss,
+mem_load_retired.l3_hit,
+mem_load_retired.l3_miss'
 
 leng=1023
 

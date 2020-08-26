@@ -12,9 +12,7 @@ END=100
 
 flags='L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses'
 
-leng=1023
-
-value=128
+dev='NULL'
 
 date >> time.txt
 
@@ -50,7 +48,7 @@ echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (non-temporal load
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
-		./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions > temp.tmp
+		./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
@@ -59,7 +57,7 @@ mv ./base.tmp ../../RESULTADOS/$test/128-nt_load.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---128"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temporary.tmp
+		perf stat -e $flags ./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-nt_load_$size.txt
 	done
 
@@ -71,7 +69,7 @@ make purge
 cd ../256
 make 2> makefile.txt
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)... ---256"
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)... ---"
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
@@ -81,7 +79,7 @@ for ((size=INIT; size<=END; size++)) ;
 	done > base.tmp
 mv ./base.tmp ../../RESULTADOS/$test/normal.csv
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (normal)... ---256"
+echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (normal)... ---"
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temporary.tmp
@@ -111,7 +109,7 @@ echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (non-temporal load
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
-		./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions > temp.tmp
+		./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
@@ -120,7 +118,7 @@ mv ./base.tmp ../../RESULTADOS/$test/256-nt_load.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---256"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temporary.tmp
+		perf stat -e $flags ./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-nt_load_$size.txt
 	done
 
@@ -154,124 +152,23 @@ echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (non-temporal load
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
-		./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions > temp.tmp
+		./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions > temp.tmp
 		printf "$((size)) "
 		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
 	done > base.tmp
 mv ./base.tmp ../../RESULTADOS/$test/512-nt_load.csv
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---256"
+echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---512"
 for ((size=INIT; size<=END; size++)) ; 
 	do
-		perf stat -e $flags ./vectorSum -m WB -d NULL -o nt_load -s $size -r $repetitions 2>> temporary.tmp
+		perf stat -e $flags ./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-nt_load_$size.txt
 	done
 
 make purge
 #---------------------------------------------------------------------
 
-cd ../../2-predication/
-
-#------------------------------------------------------------------
-test='TESTE6'
-#------------------------------------------------------------------
-#---------------------128
-cd 128
-make 2> makefile.txt
-
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (predicado)... ---128"
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		#echo "$size (MBytes) done"
-		./predication -o predicated -l $leng -v $value -s $size -r $repetitions > temp.tmp
-		printf "$((size)) "
-		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > base.tmp
-mv ./base.tmp ../../RESULTADOS/$test/128-predicated.csv
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---128"
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
-		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-predicated_$size.txt
-	done
-
-make purge
-
-
-
-#---------------------256
-cd ../256
-make 2> makefile.txt
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)... ---256"
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		#echo "$size (MBytes) done"
-		./predication -o normal -l $leng -v $value -s $size -r $repetitions > temp.tmp
-		printf "$((size)) "
-		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > base.tmp
-mv ./base.tmp ../../RESULTADOS/$test/normal.csv
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (normal)... ---256"
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		perf stat -e $flags ./predication -o normal -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
-		mv ./temporary.tmp ../../RESULTADOS/$test/perf/normal_$size.txt
-	done
-
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (predicado)... ---256"
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		#echo "$size (MBytes) done"
-		./predication -o predicated -l $leng -v $value -s $size -r $repetitions > temp.tmp
-		printf "$((size)) "
-		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > base.tmp
-mv ./base.tmp ../../RESULTADOS/$test/256-predicated.csv
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---256"
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
-		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-predicated_$size.txt
-	done
-	
-make purge
-
-
-
-#---------------------512
-cd ../512
-make 2> makefile.txt
-
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (predicado)... ---512"
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		#echo "$size (MBytes) done"
-		./predication -o predicated -l $leng -v $value -s $size -r $repetitions > temp.tmp
-		printf "$((size)) "
-		printf "$(grep '.' temp.tmp  | tr '.' ',')\n"
-	done > base.tmp
-mv ./base.tmp ../../RESULTADOS/$test/512-predicated.csv
-
-echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---512"
-for ((size=INIT; size<=END; size++)) ; 
-	do
-		perf stat -e $flags ./predication -o predicated -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
-		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-predicated_$size.txt
-	done
-
-make purge
-
-
 cd ../../
 date >> time.txt
-
-
 
 echo "TODOS OS TESTES FORAM CONCLUÍDOS COM SUCESSO!"
