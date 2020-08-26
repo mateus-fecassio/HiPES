@@ -8,9 +8,9 @@ repetitions="10"
 INIT=1
 
 #fim
-END=2
+END=100
 
-flags='cache-misses,cpu-cycles,L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses,mem_load_retired.l1_hit,mem_load_retired.l1_miss,mem_load_retired.l2_hit ,mem_load_retired.l2_miss,mem_load_retired.l3_hit,mem_load_retired.l3_miss'
+flags='cache-misses,cpu-cycles:u,cpu-cycles:k,L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses,mem_load_retired.l1_hit,mem_load_retired.l1_miss,mem_load_retired.l2_hit,mem_load_retired.l2_miss,mem_load_retired.l3_hit,mem_load_retired.l3_miss'
 
 leng=1023
 
@@ -57,7 +57,7 @@ make purge
 cd ../256
 make 2> makefile.txt
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)... ---256"
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA predication (normal)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
@@ -67,7 +67,7 @@ for ((size=INIT; size<=END; size++)) ;
 	done > base.tmp
 mv ./base.tmp ../../RESULTADOS/$test/normal.csv
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (normal)... ---256"
+echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (normal)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./predication -m $mode -d $dev -o normal -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp

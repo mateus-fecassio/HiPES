@@ -10,7 +10,7 @@ INIT=1
 #fim
 END=100
 
-flags='L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses'
+flags='cache-misses,cpu-cycles:u,cpu-cycles:k,L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses,mem_load_retired.l1_hit,mem_load_retired.l1_miss,mem_load_retired.l2_hit,mem_load_retired.l2_miss,mem_load_retired.l3_hit,mem_load_retired.l3_miss'
 
 dev='NULL'
 
@@ -69,7 +69,7 @@ make purge
 cd ../256
 make 2> makefile.txt
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)... ---"
+echo "REALIZANDO O TESTE DE MEDIÇÃO DE TEMPO PARA vectorSum (normal)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		#echo "$size (MBytes) done"
@@ -79,7 +79,7 @@ for ((size=INIT; size<=END; size++)) ;
 	done > base.tmp
 mv ./base.tmp ../../RESULTADOS/$test/normal.csv
 
-echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (normal)... ---"
+echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (normal)..."
 for ((size=INIT; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temporary.tmp
