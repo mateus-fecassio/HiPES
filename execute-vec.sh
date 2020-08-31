@@ -37,7 +37,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/128-vectorizing.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (vetorizado)... ---128"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-vectorizing_$size.txt
@@ -55,7 +55,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/128-nt_load.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---128"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-nt_load_$size.txt
@@ -80,7 +80,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/normal.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (normal)..."
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WB -d NULL -o normal -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/normal_$size.txt
@@ -98,7 +98,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/256-vectorizing.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (vetorizado)... ---256"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-vectorizing_$size.txt
@@ -116,7 +116,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/256-nt_load.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---256"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-nt_load_$size.txt
@@ -141,7 +141,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/512-vectorizing.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (vetorizado)... ---512"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WB -d NULL -o vectorizing -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-vectorizing_$size.txt
@@ -159,7 +159,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/512-nt_load.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---512"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./vectorSum -m WC -d $dev -o nt_load -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-nt_load_$size.txt

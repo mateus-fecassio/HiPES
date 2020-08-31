@@ -43,7 +43,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/128-predicated.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---128"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./predication -m $mode -d $dev -o $operation -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/128-predicated_$size.txt
@@ -68,7 +68,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/normal.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (normal)..."
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./predication -m $mode -d $dev -o normal -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/normal_$size.txt
@@ -86,7 +86,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/256-predicated.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---256"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./predication -m $mode -d $dev -o $operation -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/256-predicated_$size.txt
@@ -112,7 +112,7 @@ for ((size=INIT; size<=END; size++)) ;
 mv ./base.tmp ../../RESULTADOS/$test/512-predicated.csv
 
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA predication (predicado)... ---512"
-for ((size=INIT; size<=END; size++)) ; 
+for ((size=END; size<=END; size++)) ; 
 	do
 		perf stat -e $flags ./predication -m $mode -d $dev -o $operation -l $leng -v $value -s $size -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-predicated_$size.txt
