@@ -18,7 +18,7 @@ value=128
 
 mode='WB'
 
-dev='NULL'
+dev='/home/mfcf17/uncached-ram-wc/dev'
 
 operation='predicated'
 

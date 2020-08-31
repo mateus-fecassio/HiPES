@@ -12,7 +12,7 @@ END=100
 
 flags='cache-misses,cpu-cycles:u,cpu-cycles:k,L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,L1-icache-load-misses,LLC-loads,LLC-load-misses,LLC-stores,LLC-store-misses,mem_load_retired.l1_hit,mem_load_retired.l1_miss,mem_load_retired.l2_hit,mem_load_retired.l2_miss,mem_load_retired.l3_hit,mem_load_retired.l3_miss'
 
-dev='NULL'
+dev='/home/mfcf17/uncached-ram-wc/dev'
 
 date >> time.txt
 
