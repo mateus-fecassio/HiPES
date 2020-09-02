@@ -131,6 +131,39 @@ functions.c:225:65: warning: unused parameter ‘res’ [-Wunused-parameter]
 functions.c:225:99: warning: unused parameter ‘value’ [-Wunused-parameter]
  void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
                                                                                                    ^~~~~
+functions.c: In function ‘predicate_nt’:
+functions.c:370:33: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
+         for (i = 0; i < size; i += STRIDE)
+                                 ^~
+In file included from functions.c:16:0:
+functions.h:7:16: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
+ #define STRIDE 256/(sizeof(vector_t) * 8)
+                ^
+functions.c:370:36: note: in expansion of macro ‘STRIDE’
+         for (i = 0; i < size; i += STRIDE)
+                                    ^~~~~~
+functions.c:372:45: warning: passing argument 1 of ‘_mm256_stream_load_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
+             base = _mm256_stream_load_si256(&base_vec[i]);
+                                             ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:43:0,
+                 from functions.c:14:
+/usr/lib/gcc/x86_64-linux-gnu/7/include/avx2intrin.h:920:1: note: expected ‘const __vector(4) long long int *’ but argument is of type ‘vector_t * {aka int *}’
+ _mm256_stream_load_si256 (__m256i const *__X)
+ ^~~~~~~~~~~~~~~~~~~~~~~~
+functions.c:373:45: warning: passing argument 1 of ‘_mm256_stream_load_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
+             vcmp = _mm256_stream_load_si256(&vec_cmp[i]);
+                                             ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:43:0,
+                 from functions.c:14:
+/usr/lib/gcc/x86_64-linux-gnu/7/include/avx2intrin.h:920:1: note: expected ‘const __vector(4) long long int *’ but argument is of type ‘vector_t * {aka int *}’
+ _mm256_stream_load_si256 (__m256i const *__X)
+ ^~~~~~~~~~~~~~~~~~~~~~~~
+functions.c:324:68: warning: unused parameter ‘res’ [-Wunused-parameter]
+ void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
+                                                                    ^~~
+functions.c:324:102: warning: unused parameter ‘value’ [-Wunused-parameter]
+ void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
+                                                                                                      ^~~~~
 functions.c: In function ‘die’:
 functions.c:35:6: warning: function might be candidate for attribute ‘noreturn’ [-Wsuggest-attribute=noreturn]
  void die(char *msg)
@@ -144,9 +177,18 @@ lfsr.c:44:81: warning: conversion to ‘int’ from ‘long long int’ may alte
   return((shift_lfsr(&lfsr32, POLY_MASK_32) ^ shift_lfsr(&lfsr31, POLY_MASK_31)) & range);
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 predication.c: In function ‘main’:
-predication.c:84:30: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
+predication.c:92:30: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
    vector_size = vector_bytes / sizeof(vector_t);
                               ^
-predication.c:84:17: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
+predication.c:92:17: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
    vector_size = vector_bytes / sizeof(vector_t);
                  ^~~~~~~~~~~~
+predication.c:109:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
+   map1 = get_uncached_mem(dev, vector_bytes);
+                                ^~~~~~~~~~~~
+predication.c:110:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
+   map2 = get_uncached_mem(dev, vector_bytes);
+                                ^~~~~~~~~~~~
+predication.c:111:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
+   map3 = get_uncached_mem(dev, vector_bytes);
+                                ^~~~~~~~~~~~

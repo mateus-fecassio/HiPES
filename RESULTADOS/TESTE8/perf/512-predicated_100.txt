@@ -1,0 +1,23 @@
+
+ Performance counter stats for './predication -m WB -d /home/mfcf17/uncached-ram-wc/dev -o predicated -l 1023 -v 128 -s 100 -r 10':
+
+        29,267,315      cache-misses                                                  (23.39%)
+     3,889,142,395      cpu-cycles:u                                                  (29.28%)
+       450,528,330      cpu-cycles:k                                                  (29.28%)
+     2,407,853,650      L1-dcache-loads                                               (29.28%)
+        34,653,052      L1-dcache-load-misses     #    1.44% of all L1-dcache hits    (29.41%)
+     1,258,954,279      L1-dcache-stores                                              (29.47%)
+           409,839      L1-icache-load-misses                                         (29.47%)
+           394,656      LLC-loads                                                     (23.57%)
+           348,906      LLC-load-misses           #   88.41% of all LL-cache hits     (23.57%)
+           168,038      LLC-stores                                                    (11.79%)
+           160,490      LLC-store-misses                                              (11.79%)
+     2,410,236,668      mem_load_retired.l1_hit                                       (17.68%)
+        15,362,254      mem_load_retired.l1_miss                                      (23.57%)
+        15,139,595      mem_load_retired.l2_hit                                       (23.57%)
+           237,095      mem_load_retired.l2_miss                                      (23.57%)
+            59,546      mem_load_retired.l3_hit                                       (23.57%)
+           196,776      mem_load_retired.l3_miss                                      (23.45%)
+
+       1.833050428 seconds time elapsed
+
