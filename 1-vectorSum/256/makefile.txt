@@ -29,17 +29,7 @@ functions.c:37:6: note: expected ‘char *’ but argument is of type ‘const c
  void die(char *msg)
       ^~~
 functions.c: In function ‘vectorSum_vec’:
-functions.c:114:33: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
-         for (i = 0; i < size; i += STRIDE)
-                                 ^~
-In file included from functions.c:16:0:
-functions.h:7:16: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
- #define STRIDE 256/(sizeof(vector_t) * 8)
-                ^
-functions.c:114:36: note: in expansion of macro ‘STRIDE’
-         for (i = 0; i < size; i += STRIDE)
-                                    ^~~~~~
-functions.c:116:37: warning: passing argument 1 of ‘_mm256_loadu_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
+functions.c:120:37: warning: passing argument 1 of ‘_mm256_loadu_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
              va = _mm256_loadu_si256(&V1[i]);
                                      ^
 In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:41:0,
@@ -47,7 +37,7 @@ In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:41:0,
 /usr/lib/gcc/x86_64-linux-gnu/7/include/avxintrin.h:920:1: note: expected ‘const __vector(4) long long int *’ but argument is of type ‘vector_t * {aka int *}’
  _mm256_loadu_si256 (__m256i_u const *__P)
  ^~~~~~~~~~~~~~~~~~
-functions.c:117:37: warning: passing argument 1 of ‘_mm256_loadu_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
+functions.c:121:37: warning: passing argument 1 of ‘_mm256_loadu_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
              vb = _mm256_loadu_si256(&V2[i]);
                                      ^
 In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:41:0,
@@ -55,7 +45,7 @@ In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:41:0,
 /usr/lib/gcc/x86_64-linux-gnu/7/include/avxintrin.h:920:1: note: expected ‘const __vector(4) long long int *’ but argument is of type ‘vector_t * {aka int *}’
  _mm256_loadu_si256 (__m256i_u const *__P)
  ^~~~~~~~~~~~~~~~~~
-functions.c:121:32: warning: passing argument 1 of ‘_mm256_store_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
+functions.c:125:32: warning: passing argument 1 of ‘_mm256_store_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
              _mm256_store_si256(&res[i], sum);
                                 ^
 In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:41:0,
@@ -64,17 +54,7 @@ In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:41:0,
  _mm256_store_si256 (__m256i *__P, __m256i __A)
  ^~~~~~~~~~~~~~~~~~
 functions.c: In function ‘vectorSum_non’:
-functions.c:171:33: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
-         for (i = 0; i < size; i += STRIDE)
-                                 ^~
-In file included from functions.c:16:0:
-functions.h:7:16: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
- #define STRIDE 256/(sizeof(vector_t) * 8)
-                ^
-functions.c:171:36: note: in expansion of macro ‘STRIDE’
-         for (i = 0; i < size; i += STRIDE)
-                                    ^~~~~~
-functions.c:173:43: warning: passing argument 1 of ‘_mm256_stream_load_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
+functions.c:183:43: warning: passing argument 1 of ‘_mm256_stream_load_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
              va = _mm256_stream_load_si256(&V1[i]);
                                            ^
 In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:43:0,
@@ -82,7 +62,7 @@ In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:43:0,
 /usr/lib/gcc/x86_64-linux-gnu/7/include/avx2intrin.h:920:1: note: expected ‘const __vector(4) long long int *’ but argument is of type ‘vector_t * {aka int *}’
  _mm256_stream_load_si256 (__m256i const *__X)
  ^~~~~~~~~~~~~~~~~~~~~~~~
-functions.c:174:43: warning: passing argument 1 of ‘_mm256_stream_load_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
+functions.c:184:43: warning: passing argument 1 of ‘_mm256_stream_load_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
              vb = _mm256_stream_load_si256(&V2[i]);
                                            ^
 In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:43:0,
@@ -90,7 +70,7 @@ In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:43:0,
 /usr/lib/gcc/x86_64-linux-gnu/7/include/avx2intrin.h:920:1: note: expected ‘const __vector(4) long long int *’ but argument is of type ‘vector_t * {aka int *}’
  _mm256_stream_load_si256 (__m256i const *__X)
  ^~~~~~~~~~~~~~~~~~~~~~~~
-functions.c:178:32: warning: passing argument 1 of ‘_mm256_store_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
+functions.c:188:32: warning: passing argument 1 of ‘_mm256_store_si256’ from incompatible pointer type [-Wincompatible-pointer-types]
              _mm256_store_si256(&res[i], sum);
                                 ^
 In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:41:0,
@@ -107,18 +87,9 @@ lfsr.c:29:9: warning: conversion to ‘int’ from ‘uint {aka unsigned int}’
   return *lfsr;
          ^~~~~
 vectorSum.c: In function ‘main’:
-vectorSum.c:81:30: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
+vectorSum.c:82:30: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
    vector_size = vector_bytes / sizeof(vector_t);
                               ^
-vectorSum.c:81:17: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
+vectorSum.c:82:17: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
    vector_size = vector_bytes / sizeof(vector_t);
                  ^~~~~~~~~~~~
-vectorSum.c:96:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
-   map1 = get_uncached_mem(dev, vector_bytes);
-                                ^~~~~~~~~~~~
-vectorSum.c:97:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
-   map2 = get_uncached_mem(dev, vector_bytes);
-                                ^~~~~~~~~~~~
-vectorSum.c:98:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
-   map3 = get_uncached_mem(dev, vector_bytes);
-                                ^~~~~~~~~~~~

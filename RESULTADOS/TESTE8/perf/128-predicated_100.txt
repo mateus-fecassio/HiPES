@@ -1,0 +1,23 @@
+
+ Performance counter stats for './predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 10':
+
+        31,924,734      cache-misses                                                  (23.22%)
+     7,117,290,358      cpu-cycles:u                                                  (29.14%)
+       424,809,569      cpu-cycles:k                                                  (29.27%)
+     4,640,115,370      L1-dcache-loads                                               (29.40%)
+        36,736,299      L1-dcache-load-misses     #    0.79% of all L1-dcache hits    (29.53%)
+     2,577,081,176      L1-dcache-stores                                              (29.57%)
+           767,212      L1-icache-load-misses                                         (29.57%)
+           428,820      LLC-loads                                                     (23.66%)
+           518,162      LLC-load-misses           #  120.83% of all LL-cache hits     (23.66%)
+           203,239      LLC-stores                                                    (11.83%)
+           189,106      LLC-store-misses                                              (11.83%)
+     4,582,039,030      mem_load_retired.l1_hit                                       (17.74%)
+        15,702,721      mem_load_retired.l1_miss                                      (23.66%)
+        15,419,900      mem_load_retired.l2_hit                                       (23.55%)
+           325,343      mem_load_retired.l2_miss                                      (23.42%)
+           129,000      mem_load_retired.l3_hit                                       (23.29%)
+            52,429      mem_load_retired.l3_miss                                      (23.15%)
+
+       3.044113148 seconds time elapsed
+

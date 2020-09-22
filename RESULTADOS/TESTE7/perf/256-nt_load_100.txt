@@ -1,0 +1,23 @@
+
+ Performance counter stats for './vectorSum -m WC -d /home/mfcf17/uncached-ram-wc/dev -o nt_load -s 100 -r 10':
+
+         9,390,185      cache-misses                                                  (23.55%)
+    11,363,262,284      cpu-cycles:u                                                  (29.44%)
+    10,014,015,511      cpu-cycles:k                                                  (29.44%)
+     4,500,029,910      L1-dcache-loads                                               (29.44%)
+        72,096,445      L1-dcache-load-misses     #    1.60% of all L1-dcache hits    (29.44%)
+     2,420,121,573      L1-dcache-stores                                              (29.40%)
+         4,917,888      L1-icache-load-misses                                         (29.40%)
+        52,865,661      LLC-loads                                                     (23.52%)
+         8,864,449      LLC-load-misses           #   16.77% of all LL-cache hits     (23.52%)
+         8,724,119      LLC-stores                                                    (11.76%)
+           355,315      LLC-store-misses                                              (11.76%)
+     4,372,491,475      mem_load_retired.l1_hit                                       (17.64%)
+        40,977,398      mem_load_retired.l1_miss                                      (23.52%)
+         3,971,621      mem_load_retired.l2_hit                                       (23.52%)
+        37,006,261      mem_load_retired.l2_miss                                      (23.52%)
+        27,726,789      mem_load_retired.l3_hit                                       (23.52%)
+         5,055,181      mem_load_retired.l3_miss                                      (23.52%)
+
+       8.367567350 seconds time elapsed
+

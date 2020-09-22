@@ -1,0 +1,23 @@
+
+ Performance counter stats for './predication -m WB -d NULL -o normal -l 1023 -v 128 -s 100 -r 10':
+
+        16,711,523      cache-misses                                                  (23.30%)
+     6,626,965,781      cpu-cycles:u                                                  (29.20%)
+       419,692,640      cpu-cycles:k                                                  (29.20%)
+     3,729,710,153      L1-dcache-loads                                               (29.32%)
+        20,029,913      L1-dcache-load-misses     #    0.54% of all L1-dcache hits    (29.46%)
+     1,188,225,492      L1-dcache-stores                                              (29.50%)
+           622,692      L1-icache-load-misses                                         (29.50%)
+           279,461      LLC-loads                                                     (23.60%)
+           414,391      LLC-load-misses           #  148.28% of all LL-cache hits     (23.60%)
+           189,277      LLC-stores                                                    (11.80%)
+           177,729      LLC-store-misses                                              (11.80%)
+     3,694,936,777      mem_load_retired.l1_hit                                       (17.70%)
+         4,781,016      mem_load_retired.l1_miss                                      (23.60%)
+         4,547,294      mem_load_retired.l2_hit                                       (23.60%)
+           656,109      mem_load_retired.l2_miss                                      (23.60%)
+           236,072      mem_load_retired.l3_hit                                       (23.49%)
+           312,495      mem_load_retired.l3_miss                                      (23.35%)
+
+       2.848053087 seconds time elapsed
+

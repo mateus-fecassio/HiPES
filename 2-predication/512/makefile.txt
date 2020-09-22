@@ -28,68 +28,26 @@ functions.c:56:7: warning: passing argument 1 of ‘die’ discards ‘const’ 
 functions.c:35:6: note: expected ‘char *’ but argument is of type ‘const char *’
  void die(char *msg)
       ^~~
-functions.c: In function ‘vectorSum_vec’:
-functions.c:139:33: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
-         for (i = 0; i < size; i += STRIDE)
-                                 ^~
-In file included from functions.c:16:0:
-functions.h:7:16: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
- #define STRIDE 512/(sizeof(vector_t) * 8)
-                ^
-functions.c:139:36: note: in expansion of macro ‘STRIDE’
-         for (i = 0; i < size; i += STRIDE)
-                                    ^~~~~~
-functions.c: In function ‘vectorSum_non’:
-functions.c:196:33: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
-         for (i = 0; i < size; i += STRIDE)
-                                 ^~
-In file included from functions.c:16:0:
-functions.h:7:16: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
- #define STRIDE 512/(sizeof(vector_t) * 8)
-                ^
-functions.c:196:36: note: in expansion of macro ‘STRIDE’
-         for (i = 0; i < size; i += STRIDE)
-                                    ^~~~~~
 functions.c: In function ‘predicate’:
-functions.c:302:33: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
-         for (i = 0; i < size; i += STRIDE)
-                                 ^~
-In file included from functions.c:16:0:
-functions.h:7:16: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
- #define STRIDE 512/(sizeof(vector_t) * 8)
-                ^
-functions.c:302:36: note: in expansion of macro ‘STRIDE’
-         for (i = 0; i < size; i += STRIDE)
-                                    ^~~~~~
-functions.c:294:17: warning: unused variable ‘temp_cast’ [-Wunused-variable]
+functions.c:176:17: warning: unused variable ‘temp_cast’ [-Wunused-variable]
          __m512i temp_cast;
                  ^~~~~~~~~
-functions.c:225:65: warning: unused parameter ‘res’ [-Wunused-parameter]
- void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
-                                                                 ^~~
-functions.c:225:99: warning: unused parameter ‘value’ [-Wunused-parameter]
- void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
-                                                                                                   ^~~~~
+functions.c:103:69: warning: unused parameter ‘res’ [-Wunused-parameter]
+ vector_s predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value, int stride)
+                                                                     ^~~
+functions.c:103:103: warning: unused parameter ‘value’ [-Wunused-parameter]
+ vector_s predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value, int stride)
+                                                                                                       ^~~~~
 functions.c: In function ‘predicate_nt’:
-functions.c:401:33: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
-         for (i = 0; i < size; i += STRIDE)
-                                 ^~
-In file included from functions.c:16:0:
-functions.h:7:16: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
- #define STRIDE 512/(sizeof(vector_t) * 8)
-                ^
-functions.c:401:36: note: in expansion of macro ‘STRIDE’
-         for (i = 0; i < size; i += STRIDE)
-                                    ^~~~~~
-functions.c:393:17: warning: unused variable ‘temp_cast’ [-Wunused-variable]
+functions.c:281:17: warning: unused variable ‘temp_cast’ [-Wunused-variable]
          __m512i temp_cast;
                  ^~~~~~~~~
-functions.c:324:68: warning: unused parameter ‘res’ [-Wunused-parameter]
- void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
-                                                                    ^~~
-functions.c:324:102: warning: unused parameter ‘value’ [-Wunused-parameter]
- void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
-                                                                                                      ^~~~~
+functions.c:208:72: warning: unused parameter ‘res’ [-Wunused-parameter]
+ vector_s predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value, int stride)
+                                                                        ^~~
+functions.c:208:106: warning: unused parameter ‘value’ [-Wunused-parameter]
+ vector_s predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value, int stride)
+                                                                                                          ^~~~~
 functions.c: In function ‘die’:
 functions.c:35:6: warning: function might be candidate for attribute ‘noreturn’ [-Wsuggest-attribute=noreturn]
  void die(char *msg)
@@ -103,18 +61,12 @@ lfsr.c:44:81: warning: conversion to ‘int’ from ‘long long int’ may alte
   return((shift_lfsr(&lfsr32, POLY_MASK_32) ^ shift_lfsr(&lfsr31, POLY_MASK_31)) & range);
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
 predication.c: In function ‘main’:
-predication.c:92:30: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
+predication.c:93:30: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
    vector_size = vector_bytes / sizeof(vector_t);
                               ^
-predication.c:92:17: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
+predication.c:93:17: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
    vector_size = vector_bytes / sizeof(vector_t);
                  ^~~~~~~~~~~~
-predication.c:109:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
-   map1 = get_uncached_mem(dev, vector_bytes);
-                                ^~~~~~~~~~~~
-predication.c:110:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
-   map2 = get_uncached_mem(dev, vector_bytes);
-                                ^~~~~~~~~~~~
-predication.c:111:32: warning: conversion to ‘int’ from ‘vector_s {aka long long int}’ may alter its value [-Wconversion]
-   map3 = get_uncached_mem(dev, vector_bytes);
-                                ^~~~~~~~~~~~
+predication.c:38:54: warning: variable ‘result’ set but not used [-Wunused-but-set-variable]
+   vector_s vector_size, vector_bytes, i, iterations, result;
+                                                      ^~~~~~
