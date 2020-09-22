@@ -28,7 +28,7 @@ static void usage(char *progname)
 
 int main(int argc, char *argv[])
 {
-  int opt;
+  int opt, stride, int_vectorbytes;
   char *str1, *str2, *operation, *mode, *dev;
   double start, end, elapsed;
   vector_t *base_vec1, *base_vec2, *V;
@@ -78,6 +78,7 @@ int main(int argc, char *argv[])
 /* ====================== FIM DO TRATAMENTO DE LINHA DE COMANDO ====================== */
   
   vector_bytes = atoll(str1) * 1024 * 1024;
+  int_vectorbytes = atoi(str1) * 1024 * 1024;
   vector_size = vector_bytes / sizeof(vector_t);
   iterations = atoll(str2);
 
@@ -93,9 +94,9 @@ int main(int argc, char *argv[])
   else
   {
     void *map1, *map2, *map3;
-		map1 = get_uncached_mem(dev, vector_bytes);
-		map2 = get_uncached_mem(dev, vector_bytes);
-		map3 = get_uncached_mem(dev, vector_bytes);
+		map1 = get_uncached_mem(dev, int_vectorbytes);
+		map2 = get_uncached_mem(dev, int_vectorbytes);
+		map3 = get_uncached_mem(dev, int_vectorbytes);
 
     base_vec1 = ((vector_t*)map1);
     base_vec2 = ((vector_t*)map2);
@@ -115,9 +116,18 @@ int main(int argc, char *argv[])
   init_vector(base_vec2, vector_size);
 
 
+#ifdef SSE128
+  stride = (128) / (sizeof(vector_t) * 8);
+#endif
 
-//impressão do tamanho [em MBtyes] a ser testado
-  //fprintf(stdout, "%llu  ", atoll(str1));
+#ifdef AVX256
+  stride = (256) / (sizeof(vector_t) * 8);
+#endif
+
+#ifdef AVX512
+  stride = (512) / (sizeof(vector_t) * 8);
+#endif
+
 
 //-------------------------------------------------------------- [TESTE]
   if (!strcmp(operation, "normal"))
@@ -129,7 +139,7 @@ int main(int argc, char *argv[])
       //memset(V, 0, vector_size * sizeof(vector_t));
 
       //SOMA VETORIAL, sem vetorização
-      vectorSum(base_vec1, base_vec2, V, vector_size);
+      V = vectorSum(base_vec1, base_vec2, V, vector_size);
     }
     end = timestamp();
     elapsed = end - start;
@@ -144,7 +154,7 @@ int main(int argc, char *argv[])
       //memset(V, 0, vector_size * sizeof(vector_t));
 
       //SOMA VETORIAL, com vetorização
-      vectorSum_vec(base_vec1, base_vec2, V, vector_size);
+      V = vectorSum_vec(base_vec1, base_vec2, V, vector_size, stride);
     }
     end = timestamp();
     elapsed = end - start;
@@ -159,7 +169,7 @@ int main(int argc, char *argv[])
       //memset(V, 0, vector_size * sizeof(vector_t));
 
       //SOMA VETORIAL, com vetorização e load atemporal
-      vectorSum_non(base_vec1, base_vec2, V, vector_size);
+      V = vectorSum_non(base_vec1, base_vec2, V, vector_size, stride);
     }
     end = timestamp();
     elapsed = end - start;

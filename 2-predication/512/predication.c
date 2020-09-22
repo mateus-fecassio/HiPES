@@ -30,12 +30,12 @@ static void usage(char *progname)
 
 int main(int argc, char *argv[])
 {
-  int opt, value;
+  int opt, value, int_vectorbytes, stride;
   char *str1, *str2, *val, *len, *operation, *mode, *dev;
   double start, end, elapsed;
   long long int lenght;
   vector_t *base_vec, *vec_cmp, *V;
-  vector_s vector_size, vector_bytes, i, iterations;
+  vector_s vector_size, vector_bytes, i, iterations, result;
 
 
 /* ====================== TRATAMENTO DE LINHA DE COMANDO ====================== */
@@ -89,6 +89,7 @@ int main(int argc, char *argv[])
 /* ====================== FIM DO TRATAMENTO DE LINHA DE COMANDO ====================== */
   
   vector_bytes = atoll(str1) * 1024 * 1024;
+  int_vectorbytes = atoi(str1) * 1024 * 1024;
   vector_size = vector_bytes / sizeof(vector_t);
   iterations = atoll(str2);
   lenght = atoll(len);
@@ -106,9 +107,9 @@ int main(int argc, char *argv[])
   else
   {
     void *map1, *map2, *map3;
-		map1 = get_uncached_mem(dev, vector_bytes);
-		map2 = get_uncached_mem(dev, vector_bytes);
-		map3 = get_uncached_mem(dev, vector_bytes);
+		map1 = get_uncached_mem(dev, int_vectorbytes);
+		map2 = get_uncached_mem(dev, int_vectorbytes);
+		map3 = get_uncached_mem(dev, int_vectorbytes);
 
     base_vec = ((vector_t*)map1);
     vec_cmp = ((vector_t*)map2);
@@ -128,8 +129,18 @@ int main(int argc, char *argv[])
   init_vector_cmp(vec_cmp, vector_size, value);
 
 
-//impressão do tamanho [em MBtyes] a ser testado
-  //fprintf(stdout, "%llu  ", atoll(str1));
+#ifdef SSE128
+  stride = (128) / (sizeof(vector_t) * 8);
+#endif
+
+#ifdef AVX256
+  stride = (256) / (sizeof(vector_t) * 8);
+#endif
+
+#ifdef AVX512
+  stride = (512) / (sizeof(vector_t) * 8);
+#endif
+
 
 //-------------------------------------------------------------- []
     if (!strcmp(operation, "normal"))
@@ -137,7 +148,7 @@ int main(int argc, char *argv[])
       start = timestamp();
       for (i = 0; i < iterations; ++i)
       {
-        sum_selection_normal(base_vec, vector_size, value);
+        result = sum_selection_normal(base_vec, vector_size, value);
       }
       end = timestamp();
       elapsed = end - start;
@@ -148,7 +159,7 @@ int main(int argc, char *argv[])
       start = timestamp();
       for (i = 0; i < iterations; ++i)
       {
-        predicate(base_vec, vec_cmp, V, vector_size, value);
+        result = predicate(base_vec, vec_cmp, V, vector_size, value, stride);
       }
       end = timestamp();
       elapsed = end - start;
@@ -160,7 +171,7 @@ int main(int argc, char *argv[])
       start = timestamp();
       for (i = 0; i < iterations; ++i)
       {
-        predicate_nt(base_vec, vec_cmp, V, vector_size, value);
+        result = predicate_nt(base_vec, vec_cmp, V, vector_size, value, stride);
       }
       end = timestamp();
       elapsed = end - start;

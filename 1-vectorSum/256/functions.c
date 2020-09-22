@@ -76,7 +76,7 @@ void init_vector(vector_t *V, vector_s size)
 }; //FINALIZADO
 
 
-void vectorSum(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
+vector_t* vectorSum(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 {  
     vector_s i;
 
@@ -84,18 +84,20 @@ void vectorSum(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
     {
         res[i] = V1[i] + V2[i]; 
     }
-    _mm_mfence();      
+    _mm_mfence();
+
+    return res;      
 }; //FINALIZADO
 
 
-void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
+vector_t* vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size, int stride)
 {  
     vector_s i;
     #ifdef SSE128
         __m128i va, vb, sum;
 
         sum = _mm_setzero_si128();
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             va = _mm_loadu_si128(&V1[i]);
             vb = _mm_loadu_si128(&V2[i]);
@@ -105,13 +107,15 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
             _mm_store_si128(&res[i], sum);
         }
         _mm_mfence();
+
+        return res;
     #endif
 
     #ifdef AVX256
         __m256i va, vb, sum;
             
         sum = _mm256_setzero_si256();
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             va = _mm256_loadu_si256(&V1[i]);
             vb = _mm256_loadu_si256(&V2[i]);
@@ -120,7 +124,9 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 
             _mm256_store_si256(&res[i], sum);
         }
-        _mm_mfence(); 
+        _mm_mfence();
+
+        return res; 
     #endif
 
     #ifdef AVX512
@@ -128,7 +134,7 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 
             
         sum = _mm512_setzero_epi32();
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             va = _mm512_loadu_si512(&V1[i]);
             vb = _mm512_loadu_si512(&V2[i]);
@@ -137,13 +143,15 @@ void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
 
             _mm512_store_si512(&res[i], sum);
         }
-        _mm_mfence();  
+        _mm_mfence();
+
+        return res;  
     #endif
 
 }; //TESTAR
 
 
-void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
+vector_t* vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size, int stride)
 {  
     vector_s i;
     #ifdef SSE128
@@ -151,7 +159,7 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
         
     
         sum = _mm_setzero_si128();
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             va = _mm_stream_load_si128(&V1[i]);
             vb = _mm_stream_load_si128(&V2[i]);
@@ -161,6 +169,8 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
             _mm_store_si128(&res[i], sum);
         }
         _mm_mfence();
+
+        return res;
     #endif
 
     #ifdef AVX256
@@ -168,7 +178,7 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
         
     
         sum = _mm256_setzero_si256();
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             va = _mm256_stream_load_si256(&V1[i]);
             vb = _mm256_stream_load_si256(&V2[i]);
@@ -178,6 +188,8 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
             _mm256_store_si256(&res[i], sum);
         }
         _mm_mfence();
+        
+        return res;
     #endif
 
     #ifdef AVX512
@@ -185,7 +197,7 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
         
     
         sum = _mm512_setzero_epi32();
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             va = _mm512_stream_load_si512(&V1[i]);
             vb = _mm512_stream_load_si512(&V2[i]);
@@ -195,6 +207,8 @@ void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
             _mm512_store_si512(&res[i], sum);
         }
         _mm_mfence();
+
+        return res;
     #endif
 
 }; //TESTAR

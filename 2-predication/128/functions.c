@@ -84,131 +84,7 @@ void init_vector_cmp(vector_t *V, vector_s size, int value)
 }; //FINALIZADO
 
 
-void vectorSum(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
-{  
-    vector_s i;
-
-    for (i = 0; i < size; ++i)
-    {
-        res[i] = V1[i] + V2[i]; 
-    }
-    _mm_mfence();      
-}; //FINALIZADO
-
-
-void vectorSum_vec(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
-{  
-    vector_s i;
-    #ifdef SSE128
-        __m128i va, vb, sum;
-
-        sum = _mm_setzero_si128();
-        for (i = 0; i < size; i += STRIDE)
-        {
-            va = _mm_loadu_si128(&V1[i]);
-            vb = _mm_loadu_si128(&V2[i]);
-                
-            sum = _mm_add_epi32(va, vb);
-
-            _mm_store_si128(&res[i], sum);
-        }
-        _mm_mfence();
-    #endif
-
-    #ifdef AVX256
-        __m256i va, vb, sum;
-            
-        sum = _mm256_setzero_si256();
-        for (i = 0; i < size; i += STRIDE)
-        {
-            va = _mm256_loadu_si256(&V1[i]);
-            vb = _mm256_loadu_si256(&V2[i]);
-                
-            sum = _mm256_add_epi32(va, vb);
-
-            _mm256_store_si256(&res[i], sum);
-        }
-        _mm_mfence(); 
-    #endif
-
-    #ifdef AVX512
-        __m512i va, vb, sum;
-
-            
-        sum = _mm512_setzero_epi32();
-        for (i = 0; i < size; i += STRIDE)
-        {
-            va = _mm512_loadu_si512(&V1[i]);
-            vb = _mm512_loadu_si512(&V2[i]);
-                
-            sum = _mm512_add_epi32(va, vb);
-
-            _mm512_store_si512(&res[i], sum);
-        }
-        _mm_mfence();  
-    #endif
-
-}; //TESTAR
-
-
-void vectorSum_non(vector_t *V1, vector_t *V2, vector_t *res, vector_s size)
-{  
-    vector_s i;
-    #ifdef SSE128
-        __m128i va, vb, sum;
-        
-    
-        sum = _mm_setzero_si128();
-        for (i = 0; i < size; i += STRIDE)
-        {
-            va = _mm_stream_load_si128(&V1[i]);
-            vb = _mm_stream_load_si128(&V2[i]);
-            
-            sum = _mm_add_epi32(va, vb);
-
-            _mm_store_si128(&res[i], sum);
-        }
-        _mm_mfence();
-    #endif
-
-    #ifdef AVX256
-        __m256i va, vb, sum;
-        
-    
-        sum = _mm256_setzero_si256();
-        for (i = 0; i < size; i += STRIDE)
-        {
-            va = _mm256_stream_load_si256(&V1[i]);
-            vb = _mm256_stream_load_si256(&V2[i]);
-            
-            sum = _mm256_add_epi32(va, vb);
-
-            _mm256_store_si256(&res[i], sum);
-        }
-        _mm_mfence();
-    #endif
-
-    #ifdef AVX512
-        __m512i va, vb, sum;
-        
-    
-        sum = _mm512_setzero_epi32();
-        for (i = 0; i < size; i += STRIDE)
-        {
-            va = _mm512_stream_load_si512(&V1[i]);
-            vb = _mm512_stream_load_si512(&V2[i]);
-            
-            sum = _mm512_add_epi32(va, vb);
-
-            _mm512_store_si512(&res[i], sum);
-        }
-        _mm_mfence();
-    #endif
-
-}; //TESTAR
-
-
-void sum_selection_normal(vector_t *base_vec, vector_s size, int value)
+vector_s sum_selection_normal(vector_t *base_vec, vector_s size, int value)
 {  
     vector_s i, result;
 
@@ -218,11 +94,13 @@ void sum_selection_normal(vector_t *base_vec, vector_s size, int value)
         if (base_vec[i] < value)
             result += base_vec[i]; 
     }
-    _mm_mfence();      
+    _mm_mfence();
+    
+    return result;
 }; //FINALIZADO
 
 
-void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
+vector_s predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value, int stride)
 {
     vector_s i, sum_return = 0;
 
@@ -237,7 +115,7 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
         k_mask = _cvtu32_mask8(255); //k_mask deve conter 1 para a função fazer a comparação (a função pede esse vetor de máscara para determinar, no vetor de comparação, quais dos 16 elementos vão ser comparados)
         dst_mask = _cvtu32_mask8(0);
 
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             base = _mm_loadu_si128(&base_vec[i]);
             vcmp = _mm_loadu_si128(&vec_cmp[i]);
@@ -254,7 +132,9 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
             sum = _mm512_reduce_add_epi32(temp_cast);
             sum_return += sum;
         }
-        _mm_mfence();  
+        _mm_mfence();
+
+        return sum_return;  
     #endif
 
     #ifdef AVX256
@@ -268,7 +148,7 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
         k_mask = _cvtu32_mask8(255); //k_mask deve conter 1 para a função fazer a comparação (a função pede esse vetor de máscara para determinar, no vetor de comparação, quais dos 16 elementos vão ser comparados)
         dst_mask = _cvtu32_mask8(0);
 
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             base = _mm256_loadu_si256(&base_vec[i]);
             vcmp = _mm256_loadu_si256(&vec_cmp[i]);
@@ -285,7 +165,9 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
             sum = _mm512_reduce_add_epi32(temp_cast);
             sum_return += sum;
         }
-        _mm_mfence();  
+        _mm_mfence();
+
+        return sum_return;   
     #endif
 
     #ifdef AVX512
@@ -299,7 +181,7 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
         k_mask = _cvtu32_mask16(65535); //k_mask deve conter 1 para a função fazer a comparação (a função pede esse vetor de máscara para determinar, no vetor de comparação, quais dos 16 elementos vão ser comparados)
         dst_mask = _cvtu32_mask16(0);
 
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             base = _mm512_loadu_si512(&base_vec[i]);
             vcmp = _mm512_loadu_si512(&vec_cmp[i]);
@@ -316,12 +198,14 @@ void predicate(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s si
             sum = _mm512_reduce_add_epi32(base);
             sum_return += sum;
         }
-        _mm_mfence();  
+        _mm_mfence();
+
+        return sum_return;   
     #endif
 }; //TESTAR
 
 
-void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value)
+vector_s predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s size, long long int value, int stride)
 {
     vector_s i, sum_return = 0;
 
@@ -336,7 +220,7 @@ void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s
         k_mask = _cvtu32_mask8(255); //k_mask deve conter 1 para a função fazer a comparação (a função pede esse vetor de máscara para determinar, no vetor de comparação, quais dos 16 elementos vão ser comparados)
         dst_mask = _cvtu32_mask8(0);
 
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             base = _mm_stream_load_si128(&base_vec[i]);
             vcmp = _mm_stream_load_si128(&vec_cmp[i]);
@@ -353,7 +237,9 @@ void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s
             sum = _mm512_reduce_add_epi32(temp_cast);
             sum_return += sum;
         }
-        _mm_mfence();  
+        _mm_mfence();
+
+        return sum_return;   
     #endif
 
     #ifdef AVX256
@@ -367,7 +253,7 @@ void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s
         k_mask = _cvtu32_mask8(255); //k_mask deve conter 1 para a função fazer a comparação (a função pede esse vetor de máscara para determinar, no vetor de comparação, quais dos 16 elementos vão ser comparados)
         dst_mask = _cvtu32_mask8(0);
 
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             base = _mm256_stream_load_si256(&base_vec[i]);
             vcmp = _mm256_stream_load_si256(&vec_cmp[i]);
@@ -384,7 +270,9 @@ void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s
             sum = _mm512_reduce_add_epi32(temp_cast);
             sum_return += sum;
         }
-        _mm_mfence();  
+        _mm_mfence();
+
+        return sum_return;   
     #endif
 
     #ifdef AVX512
@@ -398,7 +286,7 @@ void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s
         k_mask = _cvtu32_mask16(65535); //k_mask deve conter 1 para a função fazer a comparação (a função pede esse vetor de máscara para determinar, no vetor de comparação, quais dos 16 elementos vão ser comparados)
         dst_mask = _cvtu32_mask16(0);
 
-        for (i = 0; i < size; i += STRIDE)
+        for (i = 0; i < size; i += stride)
         {
             base = _mm512_stream_load_si512(&base_vec[i]);
             vcmp = _mm512_stream_load_si512(&vec_cmp[i]);
@@ -415,7 +303,9 @@ void predicate_nt(vector_t *base_vec, vector_t *vec_cmp, vector_t *res, vector_s
             sum = _mm512_reduce_add_epi32(base);
             sum_return += sum;
         }
-        _mm_mfence();  
+        _mm_mfence();
+
+        return sum_return;   
     #endif
 }; //TESTAR
 
