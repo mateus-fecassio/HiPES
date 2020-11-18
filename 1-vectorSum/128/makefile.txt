@@ -1,0 +1,108 @@
+functions.c: In function ‘timestamp’:
+functions.c:26:30: warning: conversion to ‘double’ from ‘__time_t {aka long int}’ may alter its value [-Wconversion]
+     return((double)(tp.tv_sec*1000.0 + tp.tv_usec/1000.0));
+                              ^
+functions.c:26:50: warning: conversion to ‘double’ from ‘__suseconds_t {aka long int}’ may alter its value [-Wconversion]
+     return((double)(tp.tv_sec*1000.0 + tp.tv_usec/1000.0));
+                                                  ^
+functions.c: In function ‘allocate_vector’:
+functions.c:32:61: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
+     vector_t *V = (vector_t *)aligned_alloc(ALIGNMENT, size * sizeof(vector_t));
+                                                             ^
+functions.c: In function ‘get_uncached_mem’:
+functions.c:49:20: warning: passing argument 1 of ‘die’ discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+  if (fd == -1) die("couldn't open device");
+                    ^~~~~~~~~~~~~~~~~~~~~~
+functions.c:37:6: note: expected ‘char *’ but argument is of type ‘const char *’
+ void die(char *msg)
+      ^~~
+functions.c:54:10: warning: conversion to ‘int’ from ‘long int’ may alter its value [-Wconversion]
+   size = (size & PAGE_MASK) + PAGE_SIZE;
+          ^
+functions.c:56:22: warning: conversion to ‘size_t {aka long unsigned int}’ from ‘int’ may change the sign of the result [-Wsign-conversion]
+  void *map = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+                      ^~~~
+functions.c:58:7: warning: passing argument 1 of ‘die’ discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+   die("mmap failed.");
+       ^~~~~~~~~~~~~~
+functions.c:37:6: note: expected ‘char *’ but argument is of type ‘const char *’
+ void die(char *msg)
+      ^~~
+functions.c: In function ‘vectorSum_vec’:
+functions.c:102:34: warning: passing argument 1 of ‘_mm_loadu_si128’ from incompatible pointer type [-Wincompatible-pointer-types]
+             va = _mm_loadu_si128(&V1[i]);
+                                  ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/xmmintrin.h:1252:0,
+                 from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:29,
+                 from functions.c:14:
+/usr/lib/gcc/x86_64-linux-gnu/7/include/emmintrin.h:701:1: note: expected ‘const __vector(2) long long int *’ but argument is of type ‘vector_t * {aka int *}’
+ _mm_loadu_si128 (__m128i_u const *__P)
+ ^~~~~~~~~~~~~~~
+functions.c:103:34: warning: passing argument 1 of ‘_mm_loadu_si128’ from incompatible pointer type [-Wincompatible-pointer-types]
+             vb = _mm_loadu_si128(&V2[i]);
+                                  ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/xmmintrin.h:1252:0,
+                 from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:29,
+                 from functions.c:14:
+/usr/lib/gcc/x86_64-linux-gnu/7/include/emmintrin.h:701:1: note: expected ‘const __vector(2) long long int *’ but argument is of type ‘vector_t * {aka int *}’
+ _mm_loadu_si128 (__m128i_u const *__P)
+ ^~~~~~~~~~~~~~~
+functions.c:107:29: warning: passing argument 1 of ‘_mm_store_si128’ from incompatible pointer type [-Wincompatible-pointer-types]
+             _mm_store_si128(&res[i], sum);
+                             ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/xmmintrin.h:1252:0,
+                 from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:29,
+                 from functions.c:14:
+/usr/lib/gcc/x86_64-linux-gnu/7/include/emmintrin.h:713:1: note: expected ‘__vector(2) long long int *’ but argument is of type ‘vector_t * {aka int *}’
+ _mm_store_si128 (__m128i *__P, __m128i __B)
+ ^~~~~~~~~~~~~~~
+functions.c: In function ‘vectorSum_non’:
+functions.c:164:40: warning: passing argument 1 of ‘_mm_stream_load_si128’ from incompatible pointer type [-Wincompatible-pointer-types]
+             va = _mm_stream_load_si128(&V1[i]);
+                                        ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:37:0,
+                 from functions.c:14:
+/usr/lib/gcc/x86_64-linux-gnu/7/include/smmintrin.h:582:1: note: expected ‘__vector(2) long long int *’ but argument is of type ‘vector_t * {aka int *}’
+ _mm_stream_load_si128 (__m128i *__X)
+ ^~~~~~~~~~~~~~~~~~~~~
+functions.c:165:40: warning: passing argument 1 of ‘_mm_stream_load_si128’ from incompatible pointer type [-Wincompatible-pointer-types]
+             vb = _mm_stream_load_si128(&V2[i]);
+                                        ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:37:0,
+                 from functions.c:14:
+/usr/lib/gcc/x86_64-linux-gnu/7/include/smmintrin.h:582:1: note: expected ‘__vector(2) long long int *’ but argument is of type ‘vector_t * {aka int *}’
+ _mm_stream_load_si128 (__m128i *__X)
+ ^~~~~~~~~~~~~~~~~~~~~
+functions.c:169:29: warning: passing argument 1 of ‘_mm_store_si128’ from incompatible pointer type [-Wincompatible-pointer-types]
+             _mm_store_si128(&res[i], sum);
+                             ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/7/include/xmmintrin.h:1252:0,
+                 from /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h:29,
+                 from functions.c:14:
+/usr/lib/gcc/x86_64-linux-gnu/7/include/emmintrin.h:713:1: note: expected ‘__vector(2) long long int *’ but argument is of type ‘vector_t * {aka int *}’
+ _mm_store_si128 (__m128i *__P, __m128i __B)
+ ^~~~~~~~~~~~~~~
+functions.c: In function ‘die’:
+functions.c:37:6: warning: function might be candidate for attribute ‘noreturn’ [-Wsuggest-attribute=noreturn]
+ void die(char *msg)
+      ^~~
+lfsr.c: In function ‘shift_lfsr’:
+lfsr.c:29:9: warning: conversion to ‘int’ from ‘uint {aka unsigned int}’ may change the sign of the result [-Wsign-conversion]
+  return *lfsr;
+         ^~~~~
+vectorSum.c: In function ‘main’:
+vectorSum.c:82:30: warning: conversion to ‘long long unsigned int’ from ‘vector_s {aka long long int}’ may change the sign of the result [-Wsign-conversion]
+   vector_size = vector_bytes / sizeof(vector_t);
+                              ^
+vectorSum.c:82:17: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
+   vector_size = vector_bytes / sizeof(vector_t);
+                 ^~~~~~~~~~~~
+vectorSum.c:97:8: warning: ‘dev’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   map1 = get_uncached_mem(dev, int_vectorbytes);
+   ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+vectorSum.c:88:8: warning: ‘mode’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   if (!strcmp(mode, "WB"))
+        ^~~~~~~~~~~~~~~~~~
+vectorSum.c:133:8: warning: ‘operation’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   if (!strcmp(operation, "normal"))
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WC -d /home/mfcf17/uncached-ram-wc/dev -o nt_load -s 100 -r 100':
+
+    11,366,859,600      instructions                                                
+
+      11.795982884 seconds time elapsed
+

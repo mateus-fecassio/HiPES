@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o vectorizing -s 100 -r 100':
+
+     2,983,819,455      instructions                                                
+
+       4.071489466 seconds time elapsed
+

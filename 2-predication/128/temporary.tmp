@@ -1,0 +1,105 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+    12,337,108,772      instructions                                                
+
+       3.114813395 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+     6,748,304,818      cpu-cycles:u                                                
+
+       3.117236928 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+       471,514,909      cpu-cycles:k                                                
+
+       3.097538824 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+     1,511,043,282      L1-dcache-loads                                             
+
+       3.131589471 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+       339,372,115      L1-dcache-load-misses                                       
+
+       3.112594228 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+       182,436,091      L1-dcache-stores                                            
+
+       3.131247392 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+         2,215,761      LLC-loads                                                   
+
+       3.132341142 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+         1,954,900      LLC-load-misses                                             
+
+       3.115352833 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+           187,991      LLC-stores                                                  
+
+       3.118446032 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+           175,878      LLC-store-misses                                            
+
+       3.056726040 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+     1,380,910,954      mem_load_retired.l1_hit                                     
+
+       3.094358793 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+        40,270,998      mem_load_retired.l1_miss                                    
+
+       3.137593385 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+        38,792,303      mem_load_retired.l2_hit                                     
+
+       3.104457076 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+         1,668,219      mem_load_retired.l2_miss                                    
+
+       3.118240682 seconds time elapsed
+
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+           100,958      mem_load_retired.l3_hit                                     
+
+       3.123181180 seconds time elapsed
+

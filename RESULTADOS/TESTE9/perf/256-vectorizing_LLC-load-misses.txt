@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o vectorizing -s 100 -r 100':
+
+       107,122,126      LLC-load-misses                                             
+
+       3.795994972 seconds time elapsed
+

@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WC -d /home/mfcf17/uncached-ram-wc/dev -o nt_load -s 100 -r 100':
+
+    20,965,017,479      cpu-cycles:u                                                
+
+      11.804787184 seconds time elapsed
+

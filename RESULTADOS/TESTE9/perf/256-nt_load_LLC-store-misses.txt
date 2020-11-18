@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WC -d /home/mfcf17/uncached-ram-wc/dev -o nt_load -s 100 -r 100':
+
+           610,181      LLC-store-misses                                            
+
+      10.789084366 seconds time elapsed
+

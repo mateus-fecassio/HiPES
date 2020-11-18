@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o normal -s 100 -r 100':
+
+        49,747,867      LLC-store-misses                                            
+
+       4.211416709 seconds time elapsed
+

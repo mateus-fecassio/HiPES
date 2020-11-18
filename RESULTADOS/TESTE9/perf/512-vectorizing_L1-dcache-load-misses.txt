@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o vectorizing -s 100 -r 100':
+
+       498,230,105      L1-dcache-load-misses                                       
+
+       4.051049062 seconds time elapsed
+

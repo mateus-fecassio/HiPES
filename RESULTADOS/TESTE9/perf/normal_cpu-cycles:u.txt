@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o normal -s 100 -r 100':
+
+    10,395,318,853      cpu-cycles:u                                                
+
+       4.220292489 seconds time elapsed
+

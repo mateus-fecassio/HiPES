@@ -41,3 +41,12 @@ vectorSum.c:82:30: warning: conversion to ‘long long unsigned int’ from ‘v
 vectorSum.c:82:17: warning: conversion to ‘vector_s {aka long long int}’ from ‘long long unsigned int’ may change the sign of the result [-Wsign-conversion]
    vector_size = vector_bytes / sizeof(vector_t);
                  ^~~~~~~~~~~~
+vectorSum.c:97:8: warning: ‘dev’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   map1 = get_uncached_mem(dev, int_vectorbytes);
+   ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+vectorSum.c:88:8: warning: ‘mode’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   if (!strcmp(mode, "WB"))
+        ^~~~~~~~~~~~~~~~~~
+vectorSum.c:133:8: warning: ‘operation’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   if (!strcmp(operation, "normal"))
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~

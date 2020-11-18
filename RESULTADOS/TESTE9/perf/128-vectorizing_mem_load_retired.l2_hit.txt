@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o vectorizing -s 100 -r 100':
+
+       195,905,040      mem_load_retired.l2_hit                                     
+
+       3.906977282 seconds time elapsed
+

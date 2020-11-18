@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o normal -s 100 -r 100':
+
+       502,415,999      L1-dcache-load-misses                                       
+
+       4.224995913 seconds time elapsed
+

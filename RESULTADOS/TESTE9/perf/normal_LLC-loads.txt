@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o normal -s 100 -r 100':
+
+         6,039,536      LLC-loads                                                   
+
+       4.210777801 seconds time elapsed
+
