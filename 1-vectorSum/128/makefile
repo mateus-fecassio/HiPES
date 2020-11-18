@@ -1,4 +1,4 @@
-CC      	  = gcc -std=c11 -g
+CC      	  = gcc -std=c11 -g -static
 LFLAGS        =
 #AVX_FLAGS 	  = -march=native -mavx512f
 #AVX_LOG_FLAGS = -fopt-info-vec -fopt-info-vec-missed
@@ -38,7 +38,7 @@ CFLAGS  = -pipe \
 	-Wvolatile-register-var \
 	-Wwrite-strings \
 	\
-	-march=native -msse2 -mavx -mavx512f
+	-march=native -msse2 -mavx -mavx512f -O2
 
 #------------------------------------------------------------------------------
 PROG = vectorSum
