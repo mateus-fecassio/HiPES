@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WC -d /home/mfcf17/uncached-ram-wc/dev -o predic_nt -l 1023 -v 128 -s 100 -r 100':
+
+     8,011,981,396      instructions                                                
+
+      10.488303212 seconds time elapsed
+

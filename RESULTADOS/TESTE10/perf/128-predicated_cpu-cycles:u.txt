@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+     6,925,600,302      cpu-cycles:u                                                
+
+       3.046318068 seconds time elapsed
+

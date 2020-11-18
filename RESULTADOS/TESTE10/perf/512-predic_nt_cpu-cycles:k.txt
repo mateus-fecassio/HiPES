@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WC -d /home/mfcf17/uncached-ram-wc/dev -o predic_nt -l 1023 -v 128 -s 100 -r 100':
+
+    10,091,858,517      cpu-cycles:k                                                
+
+      10.451676447 seconds time elapsed
+

@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o normal -l 1023 -v 128 -s 100 -r 100':
+
+           176,217      LLC-store-misses                                            
+
+       2.894668700 seconds time elapsed
+

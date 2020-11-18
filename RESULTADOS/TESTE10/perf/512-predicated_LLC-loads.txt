@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+        28,099,176      LLC-loads                                                   
+
+       2.529501859 seconds time elapsed
+

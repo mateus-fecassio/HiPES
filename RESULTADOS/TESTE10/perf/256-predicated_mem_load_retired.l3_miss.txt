@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+         4,619,009      mem_load_retired.l3_miss                                    
+
+       2.804525016 seconds time elapsed
+

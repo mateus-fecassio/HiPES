@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WB -d NULL -o predicated -l 1023 -v 128 -s 100 -r 100':
+
+     1,511,027,427      L1-dcache-loads                                             
+
+       3.145727928 seconds time elapsed
+

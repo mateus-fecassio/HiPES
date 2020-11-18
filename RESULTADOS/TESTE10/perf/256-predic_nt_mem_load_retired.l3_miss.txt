@@ -1,0 +1,7 @@
+
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./predication -m WC -d /home/mfcf17/uncached-ram-wc/dev -o predic_nt -l 1023 -v 128 -s 100 -r 100':
+
+         5,233,808      mem_load_retired.l3_miss                                    
+
+      23.639026061 seconds time elapsed
+

@@ -96,3 +96,12 @@ predication.c:93:17: warning: conversion to ‘vector_s {aka long long int}’ f
 predication.c:38:54: warning: variable ‘result’ set but not used [-Wunused-but-set-variable]
    vector_s vector_size, vector_bytes, i, iterations, result;
                                                       ^~~~~~
+predication.c:110:8: warning: ‘dev’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   map1 = get_uncached_mem(dev, int_vectorbytes);
+   ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+predication.c:101:8: warning: ‘mode’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   if (!strcmp(mode, "WB"))
+        ^~~~~~~~~~~~~~~~~~
+predication.c:146:10: warning: ‘operation’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if (!strcmp(operation, "normal"))
+          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
