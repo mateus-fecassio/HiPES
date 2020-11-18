@@ -1,1 +1,0 @@
-sudo perf stat -e instructions nice -n -10 taskset -c 0 ./vectorSum -m WB -d NULL -o vectorizing -s 1 -r 10
