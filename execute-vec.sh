@@ -167,7 +167,7 @@ mv ./base.tmp ../../RESULTADOS/$test/512-nt_load.csv
 echo "REALIZANDO O TESTE DE MEDIÇÃO COM PERF PARA vectorSum (non-temporal load)... ---512"
 for flag in ${flags[@]} ; 
 	do
-		sudo perf stat -e $flag nice -n $niceness taskset -c $task ./vectorSum -m WC -d $dev -o nt_load -s  -r $repetitions 2>> temporary.tmp
+		sudo perf stat -e $flag nice -n $niceness taskset -c $task ./vectorSum -m WC -d $dev -o nt_load -s 100 -r $repetitions 2>> temporary.tmp
 		mv ./temporary.tmp ../../RESULTADOS/$test/perf/512-nt_load_$flag.txt
 	done
 
