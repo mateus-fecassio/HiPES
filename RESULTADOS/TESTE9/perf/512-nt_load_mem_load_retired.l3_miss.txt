@@ -1,8 +1,7 @@
-Forma de uso: ./vectorSum -m <[WB, WC, UN]> -d <device> -o <[normal, vectorizing, nt_load]> -s <vector_size> -r <number_of_repetitions>
 
- Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WC -d /home/mfcf17/uncached-ram-wc/dev -o nt_load -s -r 100':
+ Performance counter stats for 'nice -n -10 taskset -c 0 ./vectorSum -m WC -d /home/mfcf17/uncached-ram-wc/dev -o nt_load -s 100 -r 100':
 
-             1,112      mem_load_retired.l3_miss                                    
+         5,221,937      mem_load_retired.l3_miss                                    
 
-       0.001880492 seconds time elapsed
+       9.905198945 seconds time elapsed
 
