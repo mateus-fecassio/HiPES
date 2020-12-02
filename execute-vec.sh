@@ -20,8 +20,6 @@ flags=(instructions cpu-cycles:u cpu-cycles:k L1-dcache-loads L1-dcache-load-mis
 
 dev='/home/mfcf17/uncached-ram-wc/dev'
 
-date >> time.txt
-
 
 #------------------------------------------------------------------
 test='TESTE9'
@@ -173,8 +171,5 @@ for flag in ${flags[@]} ;
 
 make purge
 #---------------------------------------------------------------------
-
-cd ../../
-date >> time.txt
 
 echo "TODOS OS TESTES FORAM CONCLUÍDOS COM SUCESSO!"
