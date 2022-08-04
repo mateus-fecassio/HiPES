@@ -4,4 +4,4 @@ Este trabalho avalia o desempenho, em termos de tempo de execução, de três t�
 
 Este repositório faz parte de um trabalho científico publicado na XXI Escola Regional de Alto Desempenho da Região Sul (ERAD). O trabalho pode ser acessado [neste](https://sol.sbc.org.br/index.php/eradrs/article/view/14775) link.
 
-O projeto foi desenvolvido majoritamente em C, tendo os seus testes de execução automatizados utilizando Shell Script.
+O projeto foi desenvolvido durante uma Iniciação Científica desenvolvida no laboratório [HiPES](https://web.inf.ufpr.br/hipes/) (High Performance and Efficient Systems) da UFPR. A estrutura do projeto foi feita majoritamente em C, tendo os seus testes de execução automatizados utilizando Shell Script.
